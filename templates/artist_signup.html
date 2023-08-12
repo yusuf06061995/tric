@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid justify-content-center d-flex my-5">
+  <div class="row row-cols-12 ">
+    <div class="card border-0 bg-light-danger py-5 bg-white" style="width:22rem;">
+      {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+      </div>
+      {% endfor %}
+      <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <div class="col col-12">
+          <div class="text-center">
+            <h3 class="fw-bold text-center">Tric</h3>
+          </div>
+
+
+          <div class="col-md-12">
+            <input type="text" name="username" placeholder="Username"
+              class="form-control-lg py-2 mt-3 w-100 bg-light border-0  fs-6" id="exampleInputEmail1"
+              aria-describedby="emailHelp">
+          </div>
+          <div class="col-md-12">
+            <input type="email" name="email" placeholder="Email"
+              class="form-control-lg w-100 mt-3 bg-light border-0 fs-6 outline-none" id="exampleInputPassword1">
+          </div>
+
+          <div class="col-md-12">
+            <input type="password" name="password" placeholder="Password"
+              class="form-control-lg mt-3 w-100 bg-light border-0 fs-6" id="exampleInputPassword1">
+          </div>
+          <div class="mb-3 ">
+            <button type="submit" class="btn btn-dark btn-lg w-100 px-5 p-2 fs-6  mt-4">Submit</button>
+          </div>
+          <h6 class="text-center mt-3 text-muted">Already have Account ? <a href="{% url 'login' %}"
+              class="ext-dark link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Signin</a>
+          </h6>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

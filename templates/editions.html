@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% include "navbar.html" %}
+
+
+<div class="container-xxl py-5"style="background-image: url(../media/song-media/music.jpeg);background-size:cover;
+background-repeat:no-repeat; height:500px">
+
+
+</div>
+<div class="container">
+    <div class="row  d-flex justify-content-between">
+        <div class="col">
+            <div class="card  border-0 mb-5 rounded">
+                <div class="card-body text-start">
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card  border-0 mb-5">
+                <div class="card-body">
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+       <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 mb-5 justify-content-center d-flex">
+                <div class="col col-md-7  col-12 ">
+                    <div class="card  border-0 mb-5 ">
+                        <div class="py-3 fw-bold">{{ songs.song_name }}</div>
+                        <img src="{{ songs.song_image.url }}" class="bd-placeholder-img card-img-top rounded-4" width="100%"
+                            height="350">
+                        <div class="card-body text-start bg-white ">
+                            <div class="row justify-content-start d-flex">
+                                <div class="col px-md-5 col-md-1 col-2">
+                                <a href="#"><i
+                                            class="bi bi-youtube text-danger fs-1"></i></a>
+                                </div>
+                                <div class="col px-md-5 col-md-1 col-2">
+                                    <a href="#"><i class="bi bi-spotify text-success fs-1"></i></a>
+                                </div>
+                                <div class="col px-md-5 col-md-1 col-2 ">
+                                    <a href="#"><i class="bi bi-instagram fs-1 text-info"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="album py-5 px-4">
+        <div class="container d-flex justify-content-center w-75">
+            <div class="card border-0 ">
+                <p class="fw-bold ps-3">Top Collectors</p>
+                <div class="row">
+                    {% for user in users %}
+                    <div class="col col-md-12 col-12 ">
+                        <div class="card border-0 w-100">
+                            <div class="card-body text-start justify-content-between d-flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="Color" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                  </svg>
+                                   
+                                <p class="ms-3 text-muted">{{ user.username }}</p>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-xxl bg-white text-light py-5 border-mutted border-top">
+    <div class="container py-5">
+        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-5">
+            <div class="col mb-3 col-md-3">
+                <h6 class="text-dark"style="font-family: 'Merriweather', serif;">tric</h6>
+            </div>
+            <div class="col mb-3 col-md-3">
+                <ul class="nav flex-column ">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Help Center</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Support</a></li>
+                </ul>
+            </div>
+            <div class="col col-md-3 mb-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Blog</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Twitter</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Facebook</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Youtube</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Tiktok</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Instagram</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Discord</a></li>
+                </ul>
+            </div>
+            <div class="col mb-3 col-md-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Jobs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Privacy</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Terms OF Services</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Associated Risk</a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+</div>  
+<div class="container-xxl py-3 fixed-bottom bg-white border-mutted border-top">
+    <div class="container px-4">
+        <div class="row">
+            <div class="col col-md-4 col-12">
+                <button class="d-none d-md-block py-3 border-0 bg-white w-100 fw-bold">Platinum</button>
+            </div>
+            <div class="col px-md-5 col-md-4 col-6">
+                <button class="btn py-3 btn-light w-100 text-muted btn-lg border-opacity-10 border-secondary "
+                    style="font-size:13px;">SELL</button>
+            </div>
+            <div class="col  px-md-5 col-md-4 col-6 ">
+                <button class="btn btn-dark  btn-lg  w-100 py-3" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    style="font-size:13px;">BUY</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+
+                <button type="button" class="btn-close btn btn-hover-bg-dark" data-bs-dismiss="modal" aria-label="Close"
+                    style="font-size:10px;"></button>
+            </div>
+            <div class="modal-body justify-content-center d-flex">
+                <div class="container justify-content-center d-flex p-2 border-secondary border-1">
+                    <div class="row">
+                        <div class="container-sm m-auto justify-content-center  d-flex  py-3">
+                            <div class="">
+                                <button class="btn btn-primary btn-lg py-2 px-4 me-2" style="font-size:12px;"
+                                    id="bid">MAKE
+                                    BID</button>
+                            </div>
+                            <button class="btn btn-light btn-lg text-muted px-4 py-2 ms-2" style="font-size:12px;"
+                                id="buy">BUY
+                                NOW</button>
+                        </div>
+                        <div class="col-12 text-center py-4 "> {{ songs.song_name }} </div>
+                        <div class="col-12 text-center fw-bold fs-1 fw-bold pb-4 px-4" id="price"><i
+                                class="bi bi-currency-rupee"></i>{{ songs.song_price }}</div>
+                        <div class="col col-6 pb-4 px-4 fw-bold">Token</div>
+                        <div class="col col-6 text-end pb-4 px-4">1</div>
+                        <div class="col col-6 pb-4 px-4 fw-bold">Fee</div>
+                        <div class="col col-6 pb-4 text-end px-4">0</div>
+                        <div class="col col-6 pb-4 px-4 fw-bold">Total Cost</div>
+                        <div class="col col-6 text-end pb-4 px-4">{{ songs.song_price }}</div>
+                    
+                        <div class="col col-5 pb-4 px-4 fw-bold" id="pay">Pay With</div>
+                        <div class="col col-7 text-end pb-4 px-4" id="sel"><select
+                                class="form-select py-2 bg-black text-secondary" aria-label="Default select example">
+                                <option selected>select your payment method</option>
+                                <option value="1">G PAY</option>
+                                <option value="2">Paytm</option>
+                                <option value="3">Phonepay</option>
+                            </select></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <a href="{% url 'checkout' songs.slug %}" type="button" class="btn btn-dark btn-lg p-3 w-100"
+                    style="font-size:14px;" id="btn-price">BUY NOW</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        });
+
+
+</script>
+{% endblock %}

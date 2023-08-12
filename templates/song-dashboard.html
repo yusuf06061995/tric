@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% include "navbar.html" %}
+<div class="container-xxl gx-1  bg-black">
+<div id="myCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active"style="background-image: url(../media/song-media/music.jpeg);background-size:cover;
+      background-repeat:no-repeat; height:500px">
+        <div class="container-xxl">
+          <div class="carousel-caption text-start">
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item"style="background-image: url(../media/song-media/music.jpeg);background-size:cover;
+      background-repeat:no-repeat; height:500px">
+        
+        <div class="container-xxl">
+          <div class="carousel-caption">
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item"style="background-image: url(../media/song-media/music.jpeg);background-size:cover;
+      background-repeat:no-repeat; height:500px">
+        <div class="container-xxl">
+          <div class="carousel-caption text-end">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="container">
+    <div class="card border-0 mb-5">
+        <div class="card-body justify-content-between d-flex">
+            <p class="fs-4 ps-4 fw-bold text-start">Portfolio value</p>
+            <p class="fs-6 ps-4 text-muted me-auto py-2">Last 30 days</p>
+            <a href="" class="text-end text-decoration-none px-5 fw-bold">See Portfolio</a>
+        </div>
+        <div class="card-body">
+            <canvas id="portfolioChart"></canvas>
+        </div>
+    </div>
+</div>
+</div>
+<div class="container">
+    <div class="album py-5">
+        <div class="container">
+            <p class="fw-bold ps-4">Trending</p>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  g-xl-5  mb-5">
+                {% for release in recent_release %}
+                <div class="col px-md-5 col-md-6 col-12 mb-3">
+                    <a href="{% url 'editions' release.slug %}" class="card  border-0 mb-5 text-decoration-none">
+                        <img src="{{ release.song_image.url }}" class="bd-placeholder-img card-img-top rounded-4"
+                            width="200px" height="250">
+                        </a>      
+                        <div class="card-body">
+                            <p class="" style="font-size:14px;"> Released At - {{ release.recent_song }}</p>
+                            <div class="d-flex justify-content-between">
+                                <p class="text-start text-start"style="font-size:14px">Avg Sale
+                                    <h6 class="me-auto px-2"><i class="bi bi-currency-rupee"></i>{{ release.song_price }}</h6>
+                                </p>
+                                <a href="{% url 'editions' release.slug %}" class="btn btn-bg-dark text-muted border-secondary border-opacity-10 px-4"
+                                    style="font-size: 14px;">BUY </button>
+                                </a>
+                            </div>
+                        </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="album py-5 px-4">
+        <div class="container">
+            <p class="fw-bold ps-3">Activity</p>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  g-xl-5 mb-5">
+                <div class="col col-lg-6">
+                    <div class="card border-0 w-100">
+                        <div class="card-body text-start d-flex justify-content-between">
+                            <img src="../media/song-media/istockphoto-1133804554-1024x1024.jpg"
+                                class="bd-placeholder-img shadow-sm border-mutted border-2 rounded-2"
+                                style="width:150px;height:80px;">
+                            <p class="ms-3"> hen you invest in music through tric, you own a piec e of a song or
+                                album’s streaming tricty rights. Trade anytime on our active marketplace.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col px-md-4 col-lg-6">
+                    <div class="card border-0 w-100">
+                        <div class="card-body text-start d-flex justify-content-between">
+                            <img src="../media/song-media/istockphoto-622426674-1024x1024.jpg"
+                                class="bd-placeholder-img shadow-sm border-mutted border-2 rounded "
+                                style="width:200px;height:80px;">
+                            <p class="ms-3"> hen you invest in music through tric, you own a piec e of a song or
+                                album’s streaming tricty rights. Trade anytime on our active marketplace.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-6">
+                    <div class="card  mb-5  border-0 w-100">
+                        <div class="card-body text-start d-flex justify-content-between">
+                            <img src="../media/song-media/music.jpeg"
+                                class="bd-placeholder-img shadow-sm border-mutted border-2 rounded "
+                                style="width:200px;height:80px;">
+                                <p class="ms-3"> hen you invest in music through tric, you own a piec e of a song or
+                                album’s streaming tricty rights. Trade anytime on our active marketplace.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-6">
+                    <div class="card  mb-5  border-0 w-100">
+                        <div class="card-body text-start d-flex justify-content-between">
+                            <img src="../media/song-media/music_LQQOeKz.jpeg"
+                                class="bd-placeholder-img shadow-sm border-mutted border-2 rounded "
+                                style="width:200px;height:80px;">
+                            <p class="ms-3"> hen you invest in music through tric, you own a piec e of a song or
+                                album’s streaming tricty rights. Trade anytime on our active marketplace.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="album py-5 px-4">
+        <div class="container">
+            <p class="fw-bold ps-3">Top Collectors</p>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  g-xl-5 mb-5">
+                {% for user in users %}
+                <div class="col-lg-2">
+                    <img src="../media/song-media/music_LQQOeKz.jpeg" class="bd-placeholder-img rounded-circle" width="100" height="100">
+                    <h6 class="px-4 py-2">{{ user.username }}</h6>
+                    <p> {{ songs.song_name }} </p>
+                  </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="album px-4">
+        <div class="container">
+            <p class="fw-bold ps-3">Recent Release</p>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  g-xl-2 mb-5">
+                {% if  recent_release %}
+                {% for recent in recent_release %}
+                <div class="col col-lg-6">
+                    <div class="card  border-0 w-100">
+                        <div class="card-body text-start d-flex justify-content-between">
+                            <img src="/media/{{ recent.song_image }}"
+                                class="bd-placeholder-img shadow-sm border-mutted border-2 rounded "
+                                style="width:400px;height:80px;">
+                            <p class="ms-3">  invest in music through tric, you own a piec e of a song or
+                             album’s streaming tricty rights. Trade anytime on our active marketplace.</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p class="px-3">Coming soon..</p> 
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="container-xxl">
+        <div class="album">
+          <div class="container">
+             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-xl-4 mb-5">
+              <div class="col gx-md-5 col-lg-4 col-12 gx-4 mb-5">
+                <div class="card shadow-sm border-0 rounded-3">
+                  <img src="../media/song-media/istockphoto-1133804554-1024x1024.jpg" class="bd-placeholder-img card-img-top rounded-4 " width="100%" height="325">    
+                </div>
+              </div>
+              <div class="col gx-md-5 col-lg-4 col-12  mb-5">
+                <div class="card shadow-sm border-0">
+                  <img src="../media/song-media/images.jpeg" class="bd-placeholder-img card-img-top rounded-4 " width="100%" height="325">    
+                </div>
+              </div>
+              <div class="col gx-md-5 col-lg-4 col-12 gx-4 mb-5">
+                <div class="card shadow-sm border-0">
+                  <img src="../media/song-media/istockphoto-1133804554-1024x1024.jpg" class="bd-placeholder-img card-img-top rounded-4 " width="100%" height="325">    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="container-xxl bg-white text-light py-5 border-mutted border-top">
+            <div class="container">
+                <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-5">
+                    <div class="col mb-3 col-md-3">
+                        <h6 class="text-dark"style="font-family: 'Merriweather', serif;">tric</h6>
+                    </div>
+                    <div class="col mb-3 col-md-3">
+                        <ul class="nav flex-column ">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Help Center</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Support</a></li>
+                        </ul>
+                    </div>
+                    <div class="col col-md-3 mb-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Blog</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Twitter</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Facebook</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Youtube</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Tiktok</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Instagram</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Discord</a></li>
+                        </ul>
+                    </div>
+                    <div class="col mb-3 col-md-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Jobs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Privacy</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Terms OF Services</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Associated Risk</a>
+                            </li>
+                        </ul>
+                    </div>
+                </footer>
+            </div>
+        </div>  
+     <script>
+    // Get the canvas element
+    const canvas = document.getElementById('portfolioChart');
+
+    // Chart data
+    const chartData = {
+        labels: ['Diamond', 'Silver', 'Gold', 'Diamond'], // Replace with your actual labels
+        datasets: [
+            {
+                label: 'Portfolio Value',
+                data: [1000, 1200, 900, 1100], // Replace with your actual data
+                fill: false,
+                borderColor: '#ccc',
+                tension: 0.4
+            }
+        ]
+    };
+
+    // Chart options
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            x: {
+                grid: {
+                    display: false
+                }
+            },
+            y: {
+                grid: {
+                    display: true
+                },
+                ticks: {
+                    beginAtZero:false
+                }
+            }
+        }
+    };
+
+    // Create the line chart
+    new Chart(canvas, {
+        type: 'line',
+        data: chartData,
+        options: chartOptions
+    });
+</script>
+
+        </script>
+    {% endblock %}
