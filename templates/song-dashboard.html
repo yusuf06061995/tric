@@ -3,6 +3,20 @@
 {% block content %}
 {% include "navbar.html" %}
 <div class="container-xxl gx-1  bg-black">
+    {% if messages %}
+
+      {% for message in messages %}
+      {% if message.tags == "error" %}
+      <div class="alert alert-danger alert-dismissible fade show my-5" role="alert" id="btn">
+        {{message}}
+      </div>
+      {% else %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert" id="btn">
+        <strong>{{message}}</strong>
+      </div>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
 <div id="myCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
@@ -40,11 +54,17 @@
     <div class="card border-0 mb-5">
         <div class="card-body justify-content-between d-flex">
             <p class="fs-4 ps-4 fw-bold text-start">Portfolio value</p>
-            <p class="fs-6 ps-4 text-muted me-auto py-2">Last 30 days</p>
-            <a href="" class="text-end text-decoration-none px-5 fw-bold">See Portfolio</a>
+            
+            <a href="{% url 'song-list'  %}" class="text-end text-decoration-none px-5 fw-bold">See Portfolio</a>
         </div>
+        <p class="fs-6 ps-4 text-muted me-auto ps-5 fw-bold">Last 30 days</p>
         <div class="card-body">
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col col-lg-6  col-12">
             <canvas id="portfolioChart"></canvas>
+            </div>
+            </div>
         </div>
     </div>
 </div>
@@ -82,7 +102,7 @@
         <div class="container">
             <p class="fw-bold ps-3">Activity</p>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  g-xl-5 mb-5">
-                <div class="col col-lg-6">
+                <div class="col col-lg-6 col-md-6 col-12">
                     <div class="card border-0 w-100">
                         <div class="card-body text-start d-flex justify-content-between">
                             <img src="../media/song-media/istockphoto-1133804554-1024x1024.jpg"
@@ -233,7 +253,8 @@
                     </div>
                 </footer>
             </div>
-        </div>  
+        </div> 
+       {% block js %}  
      <script>
     // Get the canvas element
     const canvas = document.getElementById('portfolioChart');
@@ -247,24 +268,25 @@
                 data: [1000, 1200, 900, 1100], // Replace with your actual data
                 fill: false,
                 borderColor: '#ccc',
-                tension: 0.4
+                tension: 0.4,
+            
             }
         ]
     };
 
-    // Chart options
+  
     const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
             x: {
                 grid: {
-                    display: false
+                    display: false,
                 }
             },
             y: {
                 grid: {
-                    display: true
+                    display: false
                 },
                 ticks: {
                     beginAtZero:false
@@ -273,13 +295,11 @@
         }
     };
 
-    // Create the line chart
     new Chart(canvas, {
         type: 'line',
         data: chartData,
-        options: chartOptions
+        options: chartOptions,
     });
 </script>
-
-        </script>
-    {% endblock %}
+{% endblock js %}
+ {% endblock content %}

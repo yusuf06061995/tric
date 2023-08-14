@@ -151,3 +151,4 @@ def delete_song(reqeust,slug):
         return JsonResponse({'message': 'Song deleted successfully'}, status=200)
 
 
+

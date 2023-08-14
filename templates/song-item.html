@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-2">
                      {% if perms.songtrade %}   
-                    <button class="btn btn-dark  btn-lg" data-bs-toggle="modal"
+                    <button class="btn btn-dark px-md-3 px-4" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" style="font-size:13px;">Add Songs</button>
                         {% endif %}
                     </div>
@@ -34,19 +34,19 @@
                                 <th class="py-3  col-md-2 col-2">Song Name</th>
                                 <th class="py-3  col-md-2 col-2">Song Price</th>
                                 <th class="py-3  col-md-2 col-2">Song Discription</th>
-                                <th class="py-3  col-md-2 col-4">Action</th>
+                                <th class="py-3  col-md-2 col-2">Action</th>
                             </tr>
                         </thead>
                         <tbody id="myTable">
                             {% for fetch_song in fetch_songs %}
                             <tr data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
                                 class="scrollspy-example-2" tabindex="0">
-                                <td class="col-md-2 px-3 col-3 py-3">{{ forloop.counter }} .</td>
+                                <td class="col-md-2 px-3 col-2 py-3">{{ forloop.counter }} .</td>
                                 <td class="col-md-2 col-3 py-3">{{ fetch_song }}</td>
                                 <td class="col-md-2 col-2 py-3 ">{{ fetch_song.song_price }}</td>
                                 <td class="col-md-2 col-2 py-3"><img src="/media/{{fetch_song.song_image}}"
                                         class="bd-placeholder-img rounded-circle" width="50" height="50"></td>
-                                <td class="col-md-2   col-3  py-3">
+                                <td class="col-md-2   col-2  py-3">
                                    
                                         <a href="{% url 'delete-song' fetch_song.slug %}" class="btn btn-danger btn-lg ms-2 btn-delete-song" style="font-size:13px;"><i class="bi bi-trash3-fill"></i></a>
 
@@ -72,15 +72,15 @@
                     <form method="post" action="{%  url 'add-songs' %}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="col col-12">
-                            <label for="text" class="mb-2">Song Name</label>
+                            <label for="text" class="mb-2">Song Name : </label>
                             <input type="text" name="song_name" class="form-control mb-2">
-                            song Description
+                            <label for="text" class="mb-2">Song Discription : </label>
                             <input type="text" name="song_description" class="form-control mb-2">
-                            <label for="text" class="mb-2">Song Price </label>
+                            <label for="text" class="mb-2">Song Price : </label>
 
                             <input type="text" name="song_price" class="form-control mb-2">
-                            <label for="file" class="mb-2">Song Image</label>
-                            <input type="file" name="song_image" class="form-control mb-2">
+                            <label for="file" class="mb-2">Song Image : </label>
+                            <input type="file" name="song_image" class="form-control mb-3">
                             <input type="submit" class="btn btn-dark w-100" value="Add New">
                         </div>
                     </form>

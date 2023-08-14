@@ -2,16 +2,17 @@
 {% load static %}
 {% block content %}
 {% include 'navbar.html' %}
+
  <div class="container-xxl"style="background-image: url(../media/song-media/music2.jpg);background-size:cover;background-repeat:no-repeat; height:600px"> 
     <div class="container">
-   <div class="row py-5 row-cols-1 row-cols-sm-2 row-cols-md-3 gx-md-5 mb-5">
-    <div class="text-white text-start col-md-12 col-12 py-3"style="font-size:80px">start <br> investing <br> in music</div> <br>
-    <div class="col col-md-2 col-12 mb-4"><a href="{% url 'artist-signup' %}" class="btn btn-lg btn-dark bg-black w-100"style="font-size: 10px">JOIN AS ARTISTS</a></div>
-    <div class="col col-md-2 col-12"><a href="{% url 'signup' %}" class="btn btn-lg text-center bg-white w-100"style="font-size: 10px;">JOIN AS INVESTER</a></div>
+   <div class="row py-5 row-cols-1 row-cols-sm-2 row-cols-md-3 mb-5 gx-md-3">
+    <div class="text-white text-start col-md-12 col-12 py-3 fw-bold"style="font-size:80px ">INVEST <br> IN MUSIC</div> <br>
+    <div class="col col-md-3 col-sm-2 col-lg-2 col-12 px-2 mb-4"><a href="{% url 'signup' %}" class="btn btn-lg text-center bg-white w-100 outline-0 border-0 py-sm-3 py-3 fw-bold"style="font-size: 11px;">START INVESTING</a></div>
+    <div class="col col-md-3 col-sm-2 col-lg-2 col-12 mb-4 px-2"><a href="{% url 'artist-signup' %}" class="btn btn-lg btn-dark bg-black w-100  py-sm-3 py-3 border-1 border-white bg-opacity-75 fw-bold"style="font-size: 11px">JOIN AS ARTIST</a></div>
    </div>
  </div>
  </div>
-  <div class="container px-4">
+  <div class="container px-4"> 
   <div id="myCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
@@ -59,18 +60,22 @@
       <div class="album">
         <div class="container">
           <p class="text-dark fw-thick py-3" style="font-size:10px">_RECENT RELEASES </p>
-           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gx-md-5 mb-5">
+           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  mb-5">
             {% for recent in latest_song %}
+            
             <div class="col gx-md-5 col-lg-4 col-12 gx-4 mb-5">
-              <div class="card shadow-sm card-shadow-hover border-0"id="card">
+              <div class="card shadow-sm card-shadow-hover border-0">
                 <a href="{% url 'editions' recent.slug  %}">
                 <img src="/media/{{recent.song_image}}" class="bd-placeholder-img card-img-top rounded-3 rounded-bottom-0" width="100%" height="325"></a>
                 <div class="card-body">
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="">
                       <img src="/media/{{recent.song_image}}" alt="hh" class="rounded-circle" width="50" height="50">
-                      <small class="text-dark mt-2 ms-3 fw-bold">{{ recent.song_name }}</small>
-                      <p class="text-dark mt-2 ms-5 px-3"> Artist : {{ recent.artist_name }}</p>
+                      <small class="text-dark mt-2 ms-3 fw-bold">{{ recent.song_name }}</small> <br>
+                      <small class="text-dark mt-2 ms-3 ps-5"> Artist : {{ recent.artist_name }}</small>
+
+                      
+
                     </div>
                   </div>
                 </div>
@@ -81,7 +86,7 @@
         </div>
       </div>
     </div>
-  </div>
+  
   <div class="justify-content-center d-flex mt-4 mb-5"> <button class="btn btn-dark text-center px-4 py-2"
       style="font-size:12px">SHOW MORE</button>
   </div>
@@ -90,7 +95,7 @@
       <div class="col col-md-6 col-6">
         <p class="ps-5 fs-5">
           <strong class="fs-1 ">Never miss a drop</strong><br>
-          Exciting artists are sharing ownership on Royal. Create a free account to get notified about the latest
+          Exciting artists are sharing ownership on tric. Create a free account to get notified about the latest
           releases.
         </p>
       </div>
@@ -112,7 +117,7 @@
                   width="100%" height="280">
                   <div class="card-body">
                     <h5>BUY AND TRADE MUSIC</h4>
-When you invest in music through Royal, you own a piece of a song or album’s streaming royalty rights. Trade anytime on our active marketplace.
+When you invest in music through tric, you own a piece of a song or album’s streaming tricty rights. Trade anytime on our active marketplace.
                   </div>
               </div>
             </div>
@@ -121,8 +126,8 @@ When you invest in music through Royal, you own a piece of a song or album’s s
                 <img src="../media/song-media/music.jpeg" class="bd-placeholder-img card-img-top top-rounded-4" width="100%"
                   height="280">
                   <div class="card-body">
-                   <h5>EARN ROYALTIES AS IT STREAMS</h5> 
-                     You collect a portion of royalties as the music plays on digital platforms like Spotify and Apple Music. When songs outperform estimates, you earn even more.
+                   <h5>EARN ES AS IT STREAMS</h5> 
+                     You collect a portion of Royality as the music plays on digital platforms like Spotify and Apple Music. When songs outperform estimates, you earn even more.
                  </div>
               </div>
             </div>
@@ -133,7 +138,7 @@ When you invest in music through Royal, you own a piece of a song or album’s s
                   <div class="card-body">
                    <h5>PARTNER WITH ARTISTS YOU LOVE</h5> 
 
-                    Artists share ownership directly through Royal and include exclusive benefits for investors like merch, private listening parties, meet & greets, and more.
+                    Artists share ownership directly through tric and include exclusive benefits for investors like merch, private listening parties, meet & greets, and more.
                   </div>
               </div>
             </div>
@@ -155,7 +160,7 @@ When you invest in music through Royal, you own a piece of a song or album’s s
     </div>
   </div>
   </div>
-  <div class="container-xxl  bg-black gx-1 ">
+  <div class="container-xxl  bg-black gx-1">
     <div id="myCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
         <div class="carousel-indicators justify-content-end text-dark">
           <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
@@ -197,25 +202,27 @@ When you invest in music through Royal, you own a piece of a song or album’s s
   <div class="container-xxl"style="background: #111;">
   <div class="container">
   <div class="row">
-    <p class="col px-md-5 ms-md-5 col-md-10 col-12 text-white pt-5 ps-5"style="font-size:40px"> Have questions? We got you.</p>
-    <div class="col px-md-5 ms-md-5 col-md-10 col-12 ">
+    <p class="col px-md-3  col-md-10 col-12 text-light pt-5 ps-5 fw-bold"style="font-size:50px"> Have questions? We got you.</p>
+    <div class="col px-md-4 col-md-11 col-lg-11 col-12  ">
   <div class="accordion accordion-flush" id="accordionFlushExample">
     <div class="container">
     <div class="accordion-item text-white"style="background: #111;">
       <h2 class="accordion-header"> 
-        <button class="bi bi-plus-circle  w-100 border-0 collapsed text-end text-white shadow-none pt-5" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"style="background: #111;"> 
-        <p class="text-start pb-3 fs-5">Can i buy royalties on tric.</p>
+        <button class="w-100 border-0 collapsed text-start text-white shadow-none py-5 d-flex justify-content-between text-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"style="background: #111;"> 
+        Can i buy royality on tric.
+        <i class="bi bi-plus-circle text-end"></i>
         </button> 
       </h2>
-      <div id="flush-collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body  text-white"style="background: #111;">
+      <div id="flush-collapseOne" class="accordion-collapse collapse"data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body text-white"style="background: #111;">
           Placeholder content for this accordion, which is intended to demonstrate the  class. This is the first item's accordion body.</div>
       </div>
     </div>
     <div class="accordion-item">
       <h2 class="accordion-header">
-        <button class="bi bi-plus-circle w-100 border-0 collapsed  text-white shadow-none text-end pt-5" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo"style="background: #111;">
-          <p class="text-start fs-4">What are the advantage to buy royalties on tric.</p>
+        <button class="w-100 border-0  collapsed  text-white shadow-none text-start  d-flex justify-content-between py-5" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo"style="background: #111;">
+          What are the advantage to buy Royality on tric.
+          <i class="bi bi-plus-circle text-end"></i>
         </button>
       </h2>
       <div id="flush-collapseTwo" class="accordion-collapse collapse text-dark" data-bs-parent="#accordionFlushExample">
@@ -225,9 +232,9 @@ When you invest in music through Royal, you own a piece of a song or album’s s
     </div>
     <div class="accordion-item ">
       <h2 class="accordion-header ">
-        <button class="bi bi-plus-circle w-100 border-0 collapsed  text-white shadow-none pt-5  text-end" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree"style="background: #111;">
-          <p class="text-start fs-4">What are the advantage to buy royalties on tric.</p>
-
+        <button class="w-100 border-0 collapsed  text-white shadow-none  text-start  py-5 d-flex justify-content-between " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree"style="background: #111;">
+          What are the advantage to buy Royality on tric.
+          <i class="bi bi-plus-circle"></i>
         </button>
       </h2>
       <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -236,11 +243,13 @@ When you invest in music through Royal, you own a piece of a song or album’s s
     </div>
     <div class="accordion-item border-0"style="background: #111;">
       <h2 class="accordion-header">
-        <button class="bi bi-plus-circle w-100 border-0 collapsed text-white shadow-none py-5 text-end" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseThree"style="background: #111;">
-          <p class="text-start fs-4">What are the advantage to buy royalties on tric.</p>
+        <button class="w-100 border-0 collapsed text-white shadow-none py-5 text-start  d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseThree"style="background: #111;">
+          What are the advantage to buy Royality on tric.
+          <i class="bi bi-plus-circle"></i>
+
         </button>
       </h2>
-      <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div id="flush-collapseFour" class="accordion-collapse collapse pb-5" data-bs-parent="#accordionFlushExample">
         <div class="accordion-body  text-white"style="background: #111;">Placeholder content for this accordion, which is intended to demonstrate the  class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
       </div>
     </div>
@@ -250,5 +259,8 @@ When you invest in music through Royal, you own a piece of a song or album’s s
   </div>
   </div>
   </div>
+
+
+
 {% include "footer.html" %}
 {% endblock %}
