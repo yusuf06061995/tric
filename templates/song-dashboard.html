@@ -2,21 +2,6 @@
 {% load static %}
 {% block content %}
 {% include "navbar.html" %}
-<div class="container-xxl gx-1  bg-black">
-    {% if messages %}
-
-      {% for message in messages %}
-      {% if message.tags == "error" %}
-      <div class="alert alert-danger alert-dismissible fade show my-5" role="alert" id="btn">
-        {{message}}
-      </div>
-      {% else %}
-      <div class="alert alert-success alert-dismissible fade show" role="alert" id="btn">
-        <strong>{{message}}</strong>
-      </div>
-      {% endif %}
-      {% endfor %}
-      {% endif %}
 <div id="myCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
@@ -24,25 +9,42 @@
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active"style="background-image: url(../media/song-media/music.jpeg);background-size:cover;
-      background-repeat:no-repeat; height:500px">
+     <a href="{% url 'editions' recent_release.0.slug %}" class="text-decoration-none">   
+      <div class="carousel-item active"style="background-image: url( {{recent_release.0.song_image.url}} );background-size:cover;
+      background-repeat:no-repeat; height:350px">
         <div class="container-xxl">
-          <div class="carousel-caption text-start">
+          <div class="carousel-caption py-5">
+
+            <p class="text-light fs-1 "style="font-family: 'Bebas Neue', sans-serif;">{{ request.user }}</p>
+            <p class="text-light fs-1 pb-5"style="font-family: 'Bebas Neue', sans-serif; line-height:0.2">{{ recent_release.0.song_name }}</p>
+            <i class="text-white"style="font-style:normal">TRADING IS LIVE</i>
+            <a href="{% url 'editions' recent_release.0.slug %}" class="btn btn-dark bg-black opacity-75 border-1 border-white mx-3">buy Now</a>
           </div>
         </div>
       </div>
-      <div class="carousel-item"style="background-image: url(../media/song-media/music.jpeg);background-size:cover;
-      background-repeat:no-repeat; height:500px">
-        
+      <div class="carousel-item"style="background-image: url( {{recent_release.1.song_image.url}} );background-size:cover;
+      background-repeat:no-repeat; height:350px">
+         
         <div class="container-xxl">
-          <div class="carousel-caption">
+          <div class="carousel-caption py-5">
+            <p class="text-light fs-1 "style="font-family: 'Bebas Neue', sans-serif;">{{ request.user  }}</p>
+
+            <p class="text-light fs-1 pb-5"style="font-family: 'Bebas Neue', sans-serif; line-height:0.2">{{ recent_release.1.song_name }}</p>
+            <tr class="text-dark">TRADING IS LIVE</tr>
+            <a href="{% url 'editions' recent_release.1.slug %}" class="btn btn-dark bg-black opacity-75 border-1 border-white mx-3">buy Now</a>
           </div>
         </div>
+    </a>
       </div>
-      <div class="carousel-item"style="background-image: url(../media/song-media/music.jpeg);background-size:cover;
-      background-repeat:no-repeat; height:500px">
+      <div class="carousel-item"style="background-image: url({{ recent_release.2.song_image.url}});background-size:cover;
+      background-repeat:no-repeat; height:350px">
         <div class="container-xxl">
-          <div class="carousel-caption text-end">
+          <div class="carousel-caption py-5">
+            <p class="text-light fs-1"style="font-family: 'Bebas Neue', sans-serif;">{{ request.user  }}</p>
+
+            <p class="text-light fs-1 pb-5"style="font-family: 'Bebas Neue', sans-serif; line-height:0.2">{{ recent_release.2.song_name }}</p>
+            <tr class="text-dark"style="color:white">TRADING IS LIVE</tr>
+            <a href="{% url 'editions' recent_release.0.slug %}" class="btn btn-dark bg-black opacity-75 border-1 border-white mx-3">buy Now</a>
           </div>
         </div>
       </div>

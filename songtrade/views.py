@@ -37,22 +37,26 @@ def sign_in(request):
 
 def artist_signup(request):
     try:
-
-        if request.method == "POST":
-    
-            username = request.POST.get("username")
-            email = request.POST.get("email")
-            password = request.POST.get("password")
-            user = User.objects.create_user(username=username, email=email, password=password)
-            group =  Group.objects.get(name="artist")
-            user.groups.add(group)
-            
-            messages.success(request,"you have successfully created Account")
-            return redirect("artist_signup")
+        if request.user.is_authenticated:
+            return redirect("song-dashboard")
         
-        elif request.method == "GET":
-            return render(request,"artist_signup.html")
-    
+        else:
+
+            if request.method == "POST":
+        
+                username = request.POST.get("username")
+                email = request.POST.get("email")
+                password = request.POST.get("password")
+                user = User.objects.create_user(username=username, email=email, password=password)
+                group =  Group.objects.get(name="artist")
+                user.groups.add(group)
+                
+                messages.success(request,"you have successfully created Account")
+                return redirect("home")
+            
+            elif request.method == "GET":
+                return render(request,"artist_signup.html")
+        
         return render(request,"artist_signup.html")
     except Exception:
           print("not created successfully!")
@@ -60,19 +64,23 @@ def artist_signup(request):
 
 def investor_signup(request):
     try:
-
-        if request.method == "POST":
-            username = request.POST.get("username")
-            email = request.POST.get("email")
-            password = request.POST.get("password")
-            user = User.objects.create_user(username=username, email=email, password=password)
-            group =  Group.objects.get(name="investor")
-            user.groups.add(group)
-            messages.success(request,"you have successfully created Account")
-            return redirect("signup")
-        elif request.method == "GET":
-            return render(request,"signup.html")
-    
+        if request.user.is_authenticated:
+            return redirect("song-dashboard")
+        
+        else:
+        
+            if request.method == "POST":
+                username = request.POST.get("username")
+                email = request.POST.get("email")
+                password = request.POST.get("password")
+                user = User.objects.create_user(username=username, email=email, password=password)
+                group =  Group.objects.get(name="investor")
+                user.groups.add(group)
+                messages.success(request,"you have successfully created Account")
+                return redirect("home")
+            elif request.method == "GET":
+                return render(request,"signup.html")
+        
         return render(request,"signup.html")
     except Exception:
           print("not created successfully!")
@@ -88,7 +96,7 @@ def reset_password(request):
 def logout_user(request):
     logout(request)
     messages.success(request,"you have logged Out ")
-    return redirect("login")
+    return redirect("home")
 
 
 def song_dashboard(request):
@@ -105,7 +113,8 @@ def editions(request,slug):
     if request.user.is_authenticated:
          users = User.objects.all().exclude(is_superuser = True)[:10]
          songs = Songs.objects.get(slug=slug)
-         return render(request,"editions.html",{"songs":songs,"users":users})
+         song_packages = Songs.song_choice
+         return render(request,"editions.html",{"songs":songs,"users":users, "song_packages": song_packages})
     else:
         messages.error(request," To view the page login first ")
         return redirect("home")

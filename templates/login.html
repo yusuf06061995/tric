@@ -22,7 +22,7 @@
         {% csrf_token %}
         
             <div class="col-md-12 text-center">
-                <h3 class="fw-bold text-center">Tric</h3>
+                <h3 class="fw-bold text-center" style="font-family: 'Merriweather', serif">tric</h3>
             </div>
 
             <div class="col-md-12 col-12">
@@ -65,6 +65,7 @@
     </div>
   </div>
 </div>
+{% block js %}
 <script>
   $(document).ready(function () {
     $(".fade").fadeOut(4000)
@@ -105,5 +106,6 @@
   const form = document.querySelector('.needs-validation');
   form.addEventListener('submit', validateForm);
 </script>
+{% endblock js %}
 </body>
 {% endblock %}
