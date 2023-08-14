@@ -16,7 +16,7 @@
             <div class="container">
               <div class="carousel-caption text-center py-5">
                 <p class="fs-2"> {{  recent_release.0.song_name }}</p>
-                <p class="fs-2 pb-5"> {{ request.user }}</p>
+                <p class="fs-2 pb-5"style="line-height:1"> {{ request.user }}</p>
                 <i class="px-3"style="font-style:normal">TRADING NOW</i>
                 <a href="{% url 'editions' recent_release.0.slug  %}" class="btn btn-dark opacity-75 border-1 border-white">buy now</a>
 
