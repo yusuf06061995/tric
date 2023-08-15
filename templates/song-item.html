@@ -13,24 +13,24 @@
                     <p class="fw-bold px-5 py-5">Singer : {{ request.user }}</p>
                 </div>
 
-               
-                <div class="row bg-light px-2 py-5 ">
-                    <div class="col-10">
-                       <div class="bg-white rounded-3"style="width:20rem">
-                        <input type="text" id="myInput" class="form-control-lg border-0 py-2 outline-0 fs-6" placeholder="Search Songs">
-                        <i class="bi bi-search"></i>
+               </div>
+                <div class="row bg-light py-5 px-5 d-flex justify-content-between">
+                    <div class="col col-md-3 col-12 mb-3">
+                       <div class="bg-white rounded-3">
+                        <input type="text" id="myInput" class="form-control border-0 py-2 outline-0 fs-6" placeholder="Search Songs">
+        
                       </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col col-md-3 col-12">
                      {% if perms.songtrade.delete_songs %}   
-                    <button class="btn btn-dark px-md-3 px-4" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal" style="font-size:13px;">Add Songs</button>
+                    <button class="btn btn-dark" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Add Songs</button>
                         {% endif %}
                     </div>
 
                     <table>
                         <thead>
-                            <tr><th class="py-3 px-3 col-md-2 col-2">Sr No</th>
+                            <tr><th class="py-3  col-md-2  col-2">Sr No</th>
                                 <th class="py-3  col-md-2 col-2">Song Name</th>
                                 <th class="py-3  col-md-2 col-2">Song Price</th>
                                 <th class="py-3  col-md-2 col-2">Song Discription</th>

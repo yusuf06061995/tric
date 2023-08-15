@@ -3,19 +3,19 @@
 {% block content %}
 {% include 'navbar.html' %}
 
- <div class="container-xxl"style="background-image: url(../media/song-media/music2.jpg);background-size:cover;background-repeat:no-repeat; height:600px"> 
+ <div class="container-xxl bg-black pb-5"style="background-image: url(../media/song-media/music2.jpg);background-size:cover;background-repeat:no-repeat; height:600px"> 
     <div class="container py-5">
-   <div class="row py-5 row-cols-1 row-cols-sm-2 row-cols-md-3 mb-5 gx-md-3">
-    <div class="text-white text-start col-md-12 col-12 py-5 fw-bold"style="font-size:80px; line-height:1.0;font-family: 'Bebas Neue', sans-serif;
+   <div class="row py-5 row-cols-1 row-cols-sm-6 row-cols-md-3  row-cols-xs-3 mb-5 gx-md-3">
+    <div class="text-white text-start col-md-12 col-sm-6 py-5 fw-bold"style="font-size:80px; line-height:1.0;font-family: 'Bebas Neue', sans-serif;
     ">INVEST<br> IN MUSIC</div> <br>
-    <div class="col col-md-3 col-sm-2 col-lg-2 col-12 px-2 mb-4"><a href="{% url 'signup' %}" class="btn btn-lg text-center bg-white w-100 outline-0 border-0 py-sm-3 py-3 fw-bold"style="font-size: 11px;">START INVESTING</a></div>
-    <div class="col col-md-3 col-sm-2 col-lg-2 col-12 mb-4 px-2"><a href="{% url 'artist-signup' %}" class="btn btn-lg btn-dark bg-black w-100  py-sm-3 py-3 border-1 border-white bg-opacity-25 fw-bold"style="font-size: 11px">JOIN AS ARTIST</a></div>
+    <div class="col col-md-3 col-sm-12 col-lg-3 col-xl-2  px-2 mb-4"><a href="{% url 'signup' %}" class="btn btn-lg text-center bg-white w-100 outline-0 border-0 py-sm-3 py-3 fw-bold"style="font-size: 11px;">START INVESTING</a></div>
+    <div class="col col-md-3 col-sm-12 col-lg-3 col-xl-2  mb-4 px-2"><a href="{% url 'artist-signup' %}" class="btn btn-lg btn-dark bg-black w-100  py-sm-3 py-3 border-1 border-white bg-opacity-25 fw-bold"style="font-size: 11px">JOIN AS ARTIST</a></div>
    </div>
-   
+    </div>
+    
+  
  </div>
-
- </div>
- <marquee class="py-3" style="background-color: black; color:white"  loop="100" behavior="alternate" direction="left" scrollamount="3">Lorem ipsum dolor sit amet, ///  consectetur adipisicing elit. Odio quas saepe /// reiciendis deleniti nihil doloribus repellendus laborum, /// incidunt temporibus qui, inventore quo itaque  /// culpa aliquid velit error id cumque similique!</marquee>
+ <marquee class="container-xxl bg-black text-white d-flex py-3" behavior="alternate" direction="left" scrollamount="3">Lorem ipsum dolor sit amet, ///  consectetur adipisicing elit. Odio quas saepe /// reiciendis deleniti nihil doloribus repellendus laborum, /// incidunt temporibus qui, inventore quo itaque  /// culpa aliquid velit error id cumque similique!</marquee>
 
 
   <div class="container px-4"> 
@@ -66,22 +66,19 @@
       <div class="album">
         <div class="container">
           <p class="text-dark fw-thick py-3" style="font-size:10px">_RECENT RELEASES </p>
-           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  mb-5">
+           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 mb-5">
             {% for recent in latest_song %}
             
-            <div class="col gx-md-5 col-lg-4 col-12 gx-4 mb-5">
+            <div class="col gx-xl-5 gy-md-4 col-lg-4 col-xl-4 col-sm-6 col-md-6  col-12  mb-5 ">
               <div class="card shadow-sm card-shadow-hover border-0">
                 <a href="{% url 'editions' recent.slug  %}">
-                <img src="/media/{{recent.song_image}}" class="bd-placeholder-img card-img-top rounded-3 rounded-bottom-0" width="100%" height="325"></a>
+                <img src="/media/{{recent.song_image}}" class="bd-placeholder-img card-img-top rounded-3 rounded-bottom-0"width="100%" height="300"></a>
                 <div class="card-body">
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="">
                       <img src="/media/{{recent.song_image}}" alt="hh" class="rounded-circle" width="50" height="50">
                       <small class="text-dark mt-2 ms-3 fw-bold">{{ recent.song_name }}</small> <br>
                       <small class="text-dark mt-2 ms-3 ps-5"> Artist : {{ recent.artist_name }}</small>
-
-                      
-
                     </div>
                   </div>
                 </div>
@@ -265,8 +262,5 @@ When you invest in music through tric, you own a piece of a song or album’s st
   </div>
   </div>
   </div>
-
-
-
 {% include "footer.html" %}
 {% endblock %}

@@ -20,11 +20,9 @@
       {% endif %}
     <form method="post" action="{% url 'login' %}" class="needs-validation py-5" novalidate>
         {% csrf_token %}
-        
             <div class="col-md-12 text-center">
                 <h3 class="fw-bold text-center" style="font-family: 'Merriweather', serif">tric</h3>
             </div>
-
             <div class="col-md-12 col-12">
                 <input type="text" name="username" class="form-control-lg outline-0 bg-light border-0 fs-6 w-100"
                     placeholder="Username" id="validationCustom03" required pattern="^[a-zA-Z0-9_]{3,15}$">
@@ -32,7 +30,6 @@
                     Please Enter Valid Username (3 to 15 characters, only letters, numbers, and underscores)
                 </div>
             </div>
-
             <div class="col-md-12">
                 <input type="password" name="password" class="form-control-lg bg-light border-0 fs-6 w-100 mt-3 outline-0"
                     placeholder="Password" id="validationCustom04" required
@@ -41,27 +38,20 @@
                     Please Enter a valid Password (At least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character)
                 </div>
             </div>
-
             <div class="col-md-12">
                 <button type="submit" class="btn btn-dark btn-lg  mt-4 fs-6 w-100">Submit</button>
             </div>
-
             <h6 class="text-center mt-3 text-muted fw-thin">Dont have Account? <a href="{% url 'signup' %}"
                 class="text-dark link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Signup</a>
             </h6>
             <h6 class="text-center">
-                <a href="{% url 'forgot-password' %}"
+             <a href="{% url 'forgot-password' %}"
                     class="text-dark link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
                     href="#">
-                    Forgot Password</a>
+                 Forgot Password</a>
             </h6>
         </div>
     </form>
-
-   
-</body>
-</html>
-
     </div>
   </div>
 </div>
@@ -71,41 +61,5 @@
     $(".fade").fadeOut(4000)
   });
 </script>
-<script>
-  // Function to perform custom form validation
-  function validateForm(event) {
-      const form = event.target;
-      let isValid = true;
-
-      // Regular expressions for each field
-      const regexUsername = /^[a-zA-Z0-9_]{3,15}$/;
-      const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-      form.querySelectorAll('input').forEach(input => {
-          if (!input.checkValidity()) {
-              isValid = false;
-              input.classList.add('is-invalid');
-              const feedback = form.querySelector(`[data-for=${input.id}]`);
-              feedback.style.display = 'block';
-          } else {
-              input.classList.remove('is-invalid');
-              const feedback = form.querySelector(`[data-for=${input.id}]`);
-              feedback.style.display = 'none';
-          }
-      });
-
-      if (!isValid) {
-          event.preventDefault();
-          event.stopPropagation();
-      }
-
-      form.classList.add('was-validated');
-  }
-
-  // Attach the validateForm function to the form's submit event
-  const form = document.querySelector('.needs-validation');
-  form.addEventListener('submit', validateForm);
-</script>
 {% endblock js %}
-</body>
 {% endblock %}
