@@ -25,7 +25,7 @@
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
     </div>
     <div class="carousel-inner rounded-3">
-      {% if latest_song %}
+      {% if latest_song%}
       <div class="carousel-item active">
         
         <img src="{{ latest_song.0.song_image.url }}" class="bd-placeholder-img object-fit-cover" width="100%" height="350px">
@@ -56,12 +56,14 @@
         </div>
       </div>
       {% else %}
-       <p class="fs-6"> Data Not Found ! </p>
+       <p class="fs-6"> Coming soon.. </p>
       {% endif %}
     </div>
   </div>
   </div>
   </div>
+ 
+</div>
     <div class="container pb-5">
       <div class="album">
         <div class="container">
@@ -262,5 +264,12 @@ When you invest in music through tric, you own a piece of a song or album’s st
   </div>
   </div>
   </div>
+ 
 {% include "footer.html" %}
+
+{% block js %}
+
+
+
+{% endblock js %}
 {% endblock %}

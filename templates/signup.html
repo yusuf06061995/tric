@@ -1,37 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container-fluid justify-content-center d-flex my-5">
+<div class="container-fluid justify-content-center d-flex">
   <div class="row row-cols-12 ">
     <div class="card border-0 bg-light-danger py-5 bg-white" style="width:22rem;">
       {% for message in messages %}
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <div class="alert alert-danger alert-dismissible fade show position-absolute top-25 col-11" role="alert">
         <strong>{{message}}</strong>
       </div>
       {% endfor %}
-      <form method="post" action="{% url 'signup' %}">
+      <form method="post" action="{% url 'signup' %}" class="needs-validation my-5"novalidate>
         {% csrf_token %}
-        <div class="col col-12">
+        <div class="col col-12 my-4">
           <div class="text-center">
             <h3 class="fw-bold text-center"style="font-family: 'Merriweather', serif">tric</h3>
           </div>
-
-
-          <div class="col-md-12">
-            <input type="text" name="username" placeholder="Username"
-              class="form-control-lg py-2 mt-3 w-100 bg-light border-0  fs-6" id="exampleInputEmail1"
-              aria-describedby="emailHelp">
+          <div class="col-md-12 col-12">
+            <input type="text" name="username" class="form-control-lg outline-0 bg-light border-0 fs-6 w-100"
+                placeholder="Username" id="validationCustom03" required pattern="^[a-zA-Z0-9_]{3,15}$">
+            <div class="invalid-feedback" data-for="validationCustom03">
+              Please Enter User Name
+            </div>
+        </div>
+        <div class="col-md-12 col-12 my-3">
+          <input type="email" name="email" class="form-control-lg outline-0 bg-light border-0 fs-6 w-100"
+              placeholder="Email" id="validationCustom03" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+          <div class="invalid-feedback" data-for="validationCustom03">
+            Please Enter Valid Email
           </div>
-          <div class="col-md-12">
-            <input type="email" name="email" placeholder="Email"
-              class="form-control-lg w-100 mt-3 bg-light border-0 fs-6 outline-none" id="exampleInputPassword1">
-          </div>
-
-          <div class="col-md-12">
-            <input type="password" name="password" placeholder="Password"
-              class="form-control-lg mt-3 w-100 bg-light border-0 fs-6" id="exampleInputPassword1">
-          </div>
+      </div>
+      <div class="col-md-12">
+        <input type="password" name="password" class="form-control-lg bg-light border-0 fs-6 w-100  outline-0"
+            placeholder="Password" id="validationCustom04" required
+          >
+        <div class="invalid-feedback" data-for="validationCustom04">
+          Please  Enter  the valid Password
+        </div>
+    </div>
           <div class="mb-3 ">
-            <button type="submit" class="btn btn-dark btn-lg w-100 px-5 p-2 fs-6  mt-4">Submit</button>
+            <button type="submit" class="btn btn-dark btn-lg w-100 px-5 p-2 fs-6  my-4">Submit</button>
           </div>
           <h6 class="text-center mt-3 text-muted">Already have Account ? <a href="{% url 'login' %}"
               class="ext-dark link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Signin</a>
@@ -44,4 +50,31 @@
     </div>
   </div>
 </div>
+{% block js %}
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+  $(document).ready(function () {
+    $(".fade").fadeOut(4000)
+  });
+</script>
+{% endblock js %}
 {% endblock %}

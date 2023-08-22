@@ -5,14 +5,21 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User,Group
 from django.contrib import messages
 from datetime import date, timedelta
+import  json
 
 
 # Create your views here.
 
 def home(request):
-    latest_song = Songs.objects.filter(recent_song__gt=date.today() + timedelta(days=-7))[:6]
-    return render(request,"index.html",{"latest_song": latest_song})
- 
+    if request.user.is_authenticated:
+        return redirect("song-dashboard")
+    else:
+        
+        latest_song = Songs.objects.filter(recent_song__gt=date.today() + timedelta(days=-7))[:6]
+    
+        song_data = [{'name': song.song_name, 'price': song.song_price ,'package': song.song_packages} for song in latest_song]
+        return render(request, "index.html", {"latest_song":latest_song,"song_data": json.dumps(song_data)})
+
 
 def sign_in(request):
     try:
@@ -58,9 +65,9 @@ def artist_signup(request):
                 return render(request,"artist_signup.html")
         
         return render(request,"artist_signup.html")
-    except Exception:
-          print("not created successfully!")
-
+    except  Exception as e:
+           messages.error(request,e)
+           return redirect("artist-signup")
 
 def investor_signup(request):
     try:
@@ -82,8 +89,10 @@ def investor_signup(request):
                 return render(request,"signup.html")
         
         return render(request,"signup.html")
-    except Exception:
-          print("not created successfully!")
+    except  Exception as e:
+          messages.error(request,e)
+         
+          return redirect("signup")
 
 
 def forgot_password(request):
@@ -95,7 +104,7 @@ def reset_password(request):
 
 def logout_user(request):
     logout(request)
-    messages.success(request,"you have logged Out ")
+    
     return redirect("home")
 
 
@@ -115,9 +124,10 @@ def editions(request,slug):
          songs = Songs.objects.get(slug=slug)
          song_packages = Songs.song_choice
          return render(request,"editions.html",{"songs":songs,"users":users, "song_packages": song_packages})
+  
     else:
-        messages.error(request," To view the page login first ")
         return redirect("home")
+        
 
 def checkout(request,slug):
     songs = Songs.objects.get(slug=slug)

@@ -10,6 +10,7 @@
           <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
           <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
         </div>
+       {% if recent_release %}
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img src="{{ recent_release.0.song_image.url }}" class="bd-placeholder-img" width="100%" height="350px;">
@@ -48,6 +49,20 @@
             </div>
           </div>
         </div>
+        {% else %}
+        <div class="carousel-item">
+            <img src="" class="bd-placeholder-img" width="100%" height="350px">
+             <div class="container">
+              <div class="carousel-caption text-center py-5"> 
+                <p class="fs-2"> {{  recent_release.2.song_name }}</p>
+                <p class="fs-2 pb-5"> {{ request.user }}</p>
+                <i class="px-3"style="font-style:normal">TRADING NOW</i>
+                <a href="" class="btn btn-dark opacity-75 border-1 border-white">buy now</a>
+
+              </div>
+            </div>
+          </div>
+      {% endif %}
       </div>
     </div>
 
@@ -75,6 +90,7 @@
     <div class="album py-5">
         <div class="container">
             <p class="fw-bold ps-4">Trending</p>
+            {% if recent_release %}
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  g-xl-5  mb-5">
                 {% for release in recent_release %}
                 <div class="col px-md-5 col-md-6 col-12 mb-3">
@@ -96,6 +112,9 @@
                 </div>
                 {% endfor %}
             </div>
+            {% else %}
+             <p class="px-4">Coming soon..</p>
+            {% endif %}
         </div>
     </div>
 </div>

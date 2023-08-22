@@ -1,33 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container-fluid justify-content-center d-flex py-5">
+<div class="container-fluid justify-content-center d-flex">
   <div class="row row-cols-12 ">
-    <div class="card border-0"style="width:22rem;">
+    <div class="card border-0 py-5"style="width:22rem;">
 
       {% if messages %}
-
       {% for message in messages %}
       {% if message.tags == "error" %}
-      <div class="alert alert-danger alert-dismissible fade show my-5" role="alert" id="btn">
+      <div class="alert alert-danger alert-dismissible fade show position-absolute top-25 col-11" role="alert" id="btn">
         {{message}}
-      </div>
-      {% else %}
-      <div class="alert alert-success alert-dismissible fade show" role="alert" id="btn">
-        <strong>{{message}}</strong>
       </div>
       {% endif %}
       {% endfor %}
       {% endif %}
-    <form method="post" action="{% url 'login' %}" class="needs-validation py-5" novalidate>
+    <form method="post" action="{% url 'login' %}" class="needs-validation my-5" novalidate>
         {% csrf_token %}
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center my-4">
                 <h3 class="fw-bold text-center" style="font-family: 'Merriweather', serif">tric</h3>
             </div>
             <div class="col-md-12 col-12">
                 <input type="text" name="username" class="form-control-lg outline-0 bg-light border-0 fs-6 w-100"
                     placeholder="Username" id="validationCustom03" required pattern="^[a-zA-Z0-9_]{3,15}$">
                 <div class="invalid-feedback" data-for="validationCustom03">
-                    Please Enter Valid Username (3 to 15 characters, only letters, numbers, and underscores)
+                  Please Enter User Name
                 </div>
             </div>
             <div class="col-md-12">
@@ -35,7 +30,7 @@
                     placeholder="Password" id="validationCustom04" required
                     pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
                 <div class="invalid-feedback" data-for="validationCustom04">
-                    Please Enter a valid Password (At least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character)
+                  Please  Enter the Password
                 </div>
             </div>
             <div class="col-md-12">
@@ -56,7 +51,28 @@
   </div>
 </div>
 {% block js %}
+
 <script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
   $(document).ready(function () {
     $(".fade").fadeOut(4000)
   });
