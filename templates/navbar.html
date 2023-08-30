@@ -17,7 +17,7 @@
         </button>
         
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-xxl-start">
-          <li><button class="dropdown-item" type="button"style="font-size:12px">{{request.user}}</button></li>
+         <a href="{% url 'profile' request.user.id  %}"class="text-decoration-none"><li><button class="dropdown-item" type="button"style="font-size:12px">{{request.user}}</button></li></a>
 
           <li><button class="dropdown-item fw-bold " type="button"style="font-size:12px">{{request.user.email}}</button></li>
            

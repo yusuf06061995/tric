@@ -13,18 +13,17 @@ import  json
 def home(request):
     if request.user.is_authenticated:
         return redirect("song-dashboard")
-    else:
-        
-        latest_song = Songs.objects.filter(recent_song__gt=date.today() + timedelta(days=-7))[:6]
     
-        song_data = [{'name': song.song_name, 'price': song.song_price ,'package': song.song_packages} for song in latest_song]
-        return render(request, "index.html", {"latest_song":latest_song,"song_data": json.dumps(song_data)})
+    else:
+        artist_name = User.objects.filter(groups__name="artist").distinct("artist")
+        latest_song = Songs.objects.filter(recent_song__gt=date.today() + timedelta(days=-7))[:6]
+       
+        return render(request, "index.html", {"latest_song":latest_song,'artist_name':artist_name})
 
 
 def sign_in(request):
     try:
         if request.method == "POST":
-            print(request.POST)
             username = request.POST["username"]
             password = request.POST["password"]
             user = authenticate(request, username=username, password=password)
@@ -32,7 +31,7 @@ def sign_in(request):
             if user is not None:
                 login(request, user)
                 messages.success(request,"successfully logged in")  
-                return redirect("song-dashboard")
+                return redirect("home")
             else:
                 messages.error(request,"incorrect user or password !")
                 return redirect("login")
@@ -110,9 +109,10 @@ def logout_user(request):
 
 def song_dashboard(request):
     if request.user.is_authenticated:
+       artist_name = User.objects.filter(groups__name="artist")
        users = User.objects.all().exclude(is_superuser = True)[:5]
        recent_release = Songs.objects.filter(recent_song__gt=date.today() + timedelta(days=-7))[:4]
-       return render(request,"song-dashboard.html",{"recent_release":recent_release,"users":users})
+       return render(request,"song-dashboard.html",{"recent_release":recent_release,"users":users,'artist_name':artist_name})
     else:
         messages.error(request, "please log in first !")
         return redirect("home")
@@ -142,12 +142,15 @@ def add_songs(request):
             song_price = request.POST.get("song_price")
             song_image = request.FILES.get("song_image")
             song_description = request.POST.get("song_description")
-            Songs.objects.create(artist_name=request.user,song_name=song_name,song_price=song_price,song_image=song_image,slug=song_description)
+            song = Songs(artist_name=request.user,song_name=song_name,song_price=song_price,song_image=song_image)
+            song.clean_fields()
+            song.save()
+            print(song.slug)
             return redirect("song-list")   
             
     except Exception  as e:
         print(f"{e=}")
-        return render(request,"song-dashboard") 
+        return render(request,"song-dashboard.html") 
 def edit_songs(request):
     return render(request,"index.html")
   
@@ -158,7 +161,7 @@ def song_list(request):
         fetch_song = Songs.objects.filter(artist_name=request.user)
         print(fetch_song)
         return render(request,'song-item.html',{"fetch_songs":fetch_song})
-    except Exception as ep :
+    except Exception as ep:
         print(f"{ep=}")
         return redirect("song-list")
 
@@ -170,4 +173,9 @@ def delete_song(reqeust,slug):
         return JsonResponse({'message': 'Song deleted successfully'}, status=200)
 
 
-
+def user_profile(request, slug):
+    if request.user.is_authenticated:
+        profile = User.objects.get(id=slug) 
+        return render(request, "user_profile.html", {"profile": profile})
+    else:
+        return redirect("home")

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+
+
+
+<div class="container-xxl bg-black"style="background-image: url(../media/song-media/music2.jpg);background-size:cover;background-repeat:no-repeat; height:400px"> 
+    
+    </div>
+    <div class="container-xxl">
+        <div class="container">
+        <div class="row py-5">
+            <div class="col col-md-3 col-6 px-md-5">
+        <img src="../media/song-media/istockphoto-1133804554-1024x1024.jpg"
+            class="bd-placeholder-img  border-10 border-white rounded-circle"
+            style="height:150px; width: 150px; border:5px solid white; position: absolute; top: 340px;">
+            </div>
+            <div class="col col-md-2 col-6">
+            <p class="fw-bold fs-2">{{ request.user }}</p>
+            </div>
+            <div class="col col-2 px-md-0 px-5 text-center">
+                <p class="border-1 border-dark py-2">Token</p></div>
+            <div class="col col-2 px-md-0 px-5 text-center"><p class="border-1 border-dark  py-2">Followed</p></div>
+            <div class="col col-2 px-md-0 px-5 text-center"><p class="border-1 border-dark  py-2">FollowedBy</p></div>
+           </div>
+           </div> 
+           </div>
+           </div>
+        
+    </div>
+ </div>
+ 
+ 
+{% endblock content %}

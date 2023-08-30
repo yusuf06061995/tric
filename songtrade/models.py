@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 import datetime
 
 
@@ -15,15 +16,23 @@ class Songs(models.Model):
         ("DIAMOND", "Diamond"),
         ("SILVER","Silver")
     ]
-    song_packages = models.CharField(max_length=10,choices=song_choice,default="")
+    song_packages = models.CharField(max_length=10,choices=song_choice,default=song_choice[0][0])
     artist_name = models.ForeignKey(User, models.DO_NOTHING)
     song_name = models.CharField(max_length=100,unique=True)
-    songs_description = models.CharField(max_length=100)
+    songs_description = models.CharField(max_length=100, blank=True)
     song_image = models.ImageField(upload_to="song-media",unique=True)
     song_price = models.IntegerField(default=0)
     recent_song  = models.DateField(default=datetime.datetime.now())
-    slug = models.SlugField(default="", null=False)
-    
+    slug = models.SlugField(default="artist-name")
+
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.song_name)
+        super(Songs, self).save(*args, **kwargs)
+
+    # def create(self, *args, **kwargs):
+    #     self.slug = slugify(self.songs_description)
+    #     super(Songs, self).create(*args, **kwargs)
 
 
     class Meta:

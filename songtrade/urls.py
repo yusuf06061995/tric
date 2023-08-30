@@ -18,6 +18,7 @@ urlpatterns = [
     path('add-songs',add_songs,name='add-songs'),
     path('delete-song/<slug:slug>',delete_song,name='delete-song'),
     path('song-list/',song_list,name='song-list'),
+    path('profile/<int:slug>',user_profile,name='profile'),
 
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

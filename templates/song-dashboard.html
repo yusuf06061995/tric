@@ -16,11 +16,14 @@
             <img src="{{ recent_release.0.song_image.url }}" class="bd-placeholder-img" width="100%" height="350px;">
             <div class="container">
               <div class="carousel-caption text-center py-5">
+                {% if recent_release.0.slug %} 
                 <p class="fs-2"> {{  recent_release.0.song_name }}</p>
-                <p class="fs-2 pb-5"style="line-height:1"> {{ request.user }}</p>
+                <p class="fs-2 pb-5"style="line-height:1"> {{ recent_release.0.artist_name }}</p>
                 <i class="px-3"style="font-style:normal">TRADING NOW</i>
                 <a href="{% url 'editions' recent_release.0.slug  %}" class="btn btn-dark opacity-75 border-1 border-white">buy now</a>
-
+                {% else %}
+                Coming soon ..
+              {% endif %}
               </div>
             </div>
           </div>
@@ -28,23 +31,30 @@
             <img src="{{ recent_release.1.song_image.url }}" class="bd-placeholder-img" width="100%" height="350px">
             <div class="container">
               <div class="carousel-caption text-center py-5">
+                {% if recent_release.1.slug %} 
                 <p class="fs-2"> {{  recent_release.1.song_name }}</p>
-                <p class="fs-2 pb-5"> {{ request.user }}</p>
+                <p class="fs-2 pb-5"> {{  recent_release.1.artist_name }}</p>
                 <i class="px-3"style="font-style:normal">TRADING NOW</i>
                 <a href="{% url 'editions' recent_release.1.slug  %}" class="btn btn-dark opacity-75 border-1 border-white">buy now</a>
-
+                {% else %}
+                Coming soon ..
+                {% endif %}
               </div>
             </div>
           </div>
           <div class="carousel-item">
             <img src="{{ recent_release.2.song_image.url }}" class="bd-placeholder-img" width="100%" height="350px">
              <div class="container">
-              <div class="carousel-caption text-center py-5"> 
+              <div class="carousel-caption text-center py-5">
+                {% if recent_release.2.slug %} 
                 <p class="fs-2"> {{  recent_release.2.song_name }}</p>
-                <p class="fs-2 pb-5"> {{ request.user }}</p>
+                <p class="fs-2 pb-5">  {{ recent_release.1.artist_name }}</p>
                 <i class="px-3"style="font-style:normal">TRADING NOW</i>
+               
                 <a href="{% url 'editions' recent_release.2.slug  %}" class="btn btn-dark opacity-75 border-1 border-white">buy now</a>
-
+                {% else %}
+                  Coming soon ..
+                {% endif %}
               </div>
             </div>
           </div>
@@ -75,9 +85,9 @@
             <a href="{% url 'song-list'  %}" class="text-end text-decoration-none px-5 fw-bold">See Portfolio</a>
         </div>
         <p class="fs-6 ps-4 text-muted me-auto ps-5 fw-bold">Last 30 days</p>
-        <div class="card-body">
+        <div class="card-body ju">
             <div class="row">
-                <div class="col-6"></div>
+                <div class="col-6">  <canvas id="portfolioChart1"></canvas></div>
                 <div class="col col-lg-6  col-12">
             <canvas id="portfolioChart"></canvas>
             </div>
@@ -178,7 +188,7 @@
             <p class="fw-bold ps-3">Top Collectors</p>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  g-xl-5 mb-5">
                 {% for user in users %}
-                <div class="col-lg-2">
+                <div class="col col-lg-2 px-md-4">
                     <img src="../media/song-media/music_LQQOeKz.jpeg" class="bd-placeholder-img rounded-circle" width="100" height="100">
                     <h6 class="px-4 py-2">{{ user.username }}</h6>
                     <p> {{ songs.song_name }} </p>
@@ -192,7 +202,7 @@
     <div class="album px-4">
         <div class="container">
             <p class="fw-bold ps-3">Recent Release</p>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  g-xl-2 mb-5">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  g-xl-5 mb-5">
                 {% if  recent_release %}
                 {% for recent in recent_release %}
                 <div class="col px-md-4 col-md-6">
@@ -276,20 +286,25 @@
             </div>
         </div> 
        {% block js %}  
-     <script>
+
+       <script>
     // Get the canvas element
     const canvas = document.getElementById('portfolioChart');
 
     // Chart data
     const chartData = {
-        labels: ['Diamond', 'Silver', 'Gold', 'Diamond'], // Replace with your actual labels
+        labels: [{% for release in recent_release  %} '{{release.song_packages }}' , {% endfor %}], // Replace with your actual labels
         datasets: [
             {
                 label: 'Portfolio Value',
-                data: [1000, 1200, 900, 1100], // Replace with your actual data
-                fill: false,
+                data: [{% for release in recent_release  %} '{{release.song_price }}' , {% endfor %}], // Replace with your actual data
+               
                 borderColor: '#ccc',
-                tension: 0.4,
+                backgroundColor: 'rgb(75, 192, 192)',
+                
+
+
+                
             
             }
         ]
@@ -298,28 +313,91 @@
   
     const chartOptions = {
         responsive: true,
-        maintainAspectRatio: false,
+      
         scales: {
             x: {
                 grid: {
                     display: false,
-                }
+                },
+            title: {
+                        display: true,
+                        text: 'Song Packages'
+                    }
             },
             y: {
                 grid: {
                     display: false
                 },
-                ticks: {
-                    beginAtZero:false
-                }
+                title: {
+                        display: true,
+                        text: 'Song Price'
+                    }
+               
             }
         }
     };
 
     new Chart(canvas, {
-        type: 'line',
+        type: 'bar',
         data: chartData,
         options: chartOptions,
+    });
+</script>
+    
+<script>
+    // Get the canvas element
+    const canvas1 = document.getElementById('portfolioChart1');
+
+    // Chart data
+    const chartData1 = {
+        labels: [{% for release in recent_release  %} '{{release.song_name }}' , {% endfor %}], // Replace with your actual labels
+        datasets: [
+            {
+                label: 'Portfolio Value',
+                data: [{% for release in recent_release  %} '{{release.song_price }}' , {% endfor %}], // Replace with your actual data
+               
+                borderColor: '#ccc',
+                backgroundColor: 'rgb(75, 192, 192)',
+                
+
+
+                
+            
+            }
+        ]
+    };
+
+  
+    const chartOptions1 = {
+        responsive: true,
+      
+        scales: {
+            x: {
+                grid: {
+                    display: false,
+                },
+            title: {
+                        display: true,
+                        text: 'Song Name'
+                    }
+            },
+            y: {
+                grid: {
+                    display: false
+                },
+                title: {
+                        display: true,
+                        text: 'Song Price'
+                    }
+               
+            }
+        }
+    };
+
+    new Chart(canvas1, {
+        type: 'line',
+        data: chartData1,
+        options: chartOptions1,
     });
 </script>
 {% endblock js %}

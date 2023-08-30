@@ -164,7 +164,7 @@ background-repeat:no-repeat; height:400px">
                                 NOW</button>
 
                         </div>
-                        
+                       
                         <div class="col-12 text-center py-4 "> {{ songs.song_name }} </div>
                         <div class="col-12 text-center fw-bold fs-1 fw-bold pb-4 px-4" id="price"><i
                                 class="bi bi-currency-rupee"></i>{{ songs.song_price }}</div>
@@ -180,12 +180,14 @@ background-repeat:no-repeat; height:400px">
                                 class="form-select py-2 bg-black text-secondary" aria-label="Default select example">
                                 <option selected>Choose Package</option>
                                 {% for package in song_packages %}
-                                    <option value="{{package.0}}">{{ package.1 }}</option>
+                                    <option value="{{package.0}}">{{ package.0 }}</option>
+                                   
                                 {% endfor %}
                              
                             </select></div>
                     </div>
-                </div>
+                    </div>
+              
             </div>
             <div class="modal-footer border-0">
                 <a href="{% url 'checkout' songs.slug %}" type="button" class="btn btn-dark btn-lg p-3 w-100"
@@ -201,6 +203,12 @@ background-repeat:no-repeat; height:400px">
 
 
 $(document).ready(function() {
+
+
+  $("#bid").click(function(){
+    $(".bid").fadeOut()
+
+  }); 
   $("#playPauseButton").click(function() {
     $(".play-icon, .pause-icon").toggle();
   });
