@@ -22,7 +22,7 @@
   <div id="myCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
     <div class="carousel-indicators justify-content-end d-flex">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active opacity-50 mx-3" style="height:15px; width: 15px; border-radius: 50%;" aria-label="Slide 1" aria-current="true"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2 rounded-circle opacity-50"style="height:15px; width: 15px; border-radius: 50%;"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2 rounded-circle opacity-50 "style="height:15px; width: 15px; border-radius: 50%;"></button>
     </div>
     <div class="carousel-inner rounded-3">
       {% if latest_song%}
@@ -35,7 +35,7 @@
               <div class="col cpl-md-5 col-12 text-start px-5  fs-6 mb-4"> Trading </div>
               <div class="col cpl-md-5 col-12 text-start px-5 fs-1 mb-3">{{ latest_song.0.song_name }}</div>
               <div class="col col-md-5 col-12 ps-4">
-               <a href="{% url 'editions' latest_song.0.slug %}" class="btn bg-white bg-opacity-25 mx-3 w-100 btn-lg btn-hover-bg-dark btn-hover border-1 border-white text-white border-opacity-75"style="font-size:15px">VIEW RELEASE </a>
+               <a href="{% url 'editions' latest_song.0.slug %}" class="btn bg-white bg-opacity-25 mx-3 w-100 btn-lg my-md-0 my-3 btn-hover-bg-dark btn-hover border-1 border-white text-white border-opacity-75"style="font-size:15px">VIEW RELEASE </a>
               </div>
             </div>
           </div>
@@ -49,7 +49,7 @@
               <div class="col  col-12 text-start px-5  fs-6 mb-4">Trading</div>
               <div class="col  col-12 text-start px-5 fs-1 mb-3">{{ latest_song.1.song_name }}</div>
              <div class="col col-md-5 col-12 ps-4">
-             <a href="{% url 'editions' latest_song.1.slug %}" class="btn btn-dark w-100 btn-lg ms-3  bg-white bg-opacity-25 text-white border-1 border-white border-opacity-75" style="font-size:15px">VIEW RELEASE </a>
+             <a href="{% url 'editions' latest_song.1.slug %}" class="btn btn-dark w-100 btn-lg ms-3 my-md-0 my-3  bg-white bg-opacity-25 text-white border-1 border-white border-opacity-75" style="font-size:15px">VIEW RELEASE </a>
              </div>
              </div>
           </div>
