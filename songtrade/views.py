@@ -6,9 +6,13 @@ from django.contrib.auth.models import User,Group
 from django.contrib import messages
 from datetime import date, timedelta
 import  json
-
+from songtrade.models import UserProfile
 
 # Create your views here.
+
+
+
+
 
 def home(request):
     if request.user.is_authenticated:
@@ -18,7 +22,24 @@ def home(request):
         artist_name = User.objects.filter(groups__name="artist").distinct("artist")
         latest_song = Songs.objects.filter(recent_song__gt=date.today() + timedelta(days=-7))[:6]
        
+       
         return render(request, "index.html", {"latest_song":latest_song,'artist_name':artist_name})
+
+
+
+
+
+    
+def search(request):
+    query = request.POST.get('editors')
+
+    # Filter songs based on the search query
+    songs = Songs.objects.filter(song_name__icontains=query) if query else Songs.objects.all()
+
+    # Convert the queryset to a list of dictionaries
+    songs = [{'song_name': song.song_name, 'song_img_url': song.song_img.url} for song in songs]
+
+    return JsonResponse({'songs': songs})
 
 
 def sign_in(request):
@@ -173,9 +194,54 @@ def delete_song(reqeust,slug):
         return JsonResponse({'message': 'Song deleted successfully'}, status=200)
 
 
-def user_profile(request, slug):
+def user_profile(request, pk):
     if request.user.is_authenticated:
-        profile = User.objects.get(id=slug) 
+        profile = UserProfile.objects.get(id=pk) 
+
+        if request.method == "POST":
+           current_user_profile = request.user.userprofile
+           action = request.POST['follow']
+          
+           if action == "unfollow":
+                if profile in current_user_profile.following.all():
+                    current_user_profile.following.remove(profile)
+            
+           elif action == "follow":
+                if profile not in current_user_profile.following.all():
+                    current_user_profile.following.add(profile)
+                    print("User followed successfully.")
+                else:
+                    print("User already followed.")
+           current_user_profile.save()
+
         return render(request, "user_profile.html", {"profile": profile})
+    else:
+        return redirect("home")
+    
+
+def user_post(request, pk):
+    print(request.POST)
+    if request.user.is_authenticated:
+        profiles = UserProfile.objects.all()
+        profile = UserProfile.objects.get(id=pk) 
+
+        if request.method == "POST":
+           current_user_profile = request.user.userprofile
+           action = request.POST['follow']
+          
+           if action == "unfollow":
+                if profile in current_user_profile.following.all():
+                    current_user_profile.following.remove(profile)
+            
+            
+           elif action == "follow":
+                if profile not in current_user_profile.following.all():
+                    current_user_profile.following.add(profile)
+                    print("User followed successfully.")
+                else:
+                    print("User already followed.")
+           current_user_profile.save()
+
+        return render(request, "user-post.html", {"profile": profile,'profiles':profiles})
     else:
         return redirect("home")

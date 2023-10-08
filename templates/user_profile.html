@@ -3,33 +3,40 @@
 {% block content %}
 {% include 'navbar.html' %}
 
-
-
-<div class="container-xxl bg-black"style="background-image: url(../media/song-media/music2.jpg);background-size:cover;background-repeat:no-repeat; height:400px"> 
-    
-    </div>
-    <div class="container-xxl">
-        <div class="container">
-        <div class="row py-5">
-            <div class="col col-md-3 col-6 px-md-5">
-        <img src="/media/song-media/blank.png"
-            class="bd-placeholder-img  border-10 border-white rounded-circle"
-            style="height:150px; width: 150px; border:5px solid white; position: absolute; top: 340px;">
+<div class="container-xxl bg-black" style="background-image: url({{ profile.user.profile_picture.url }}); background-size: cover; background-repeat: no-repeat; height: 400px">
+</div>
+<div class="container-xxl">
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-3 col-12 px-md-5 text-md-start text-center">
+                <img src="../media/song-media/blank.png"
+                    class="rounded-circle h-75 position-relative"
+                    style="bottom: 70px;border: 10px solid white; box-shadow:0px 0px 10px 0px black">
             </div>
-            <div class="col col-md-2 col-6">
-            <p class="fw-bold fs-2">{{ request.user }}</p>
+            <div class="fs-1 fw-bold col col-md-2 col-12  text-md-start text-center py-4 ">
+                {% if profile %}
+                
+                {{ profile.user.username }}
             </div>
-            <div class="col col-2 px-md-0 px-5 text-center">
-                <p class="border-1 border-dark py-2">Token</p></div>
-            <div class="col col-2 px-md-0 px-5 text-center"><p class="border-1 border-dark  py-2">Followed</p></div>
-            <div class="col col-2 px-md-0 px-5 text-center"><p class="border-1 border-dark  py-2">FollowedBy</p></div>
-           </div>
-           </div> 
-           </div>
-           </div>
-        
+            <div class="col col-2 px-md-0 px-5 text-center py-5">
+                Token
+            </div>
+            <div class="col col-2 px-md-0 px-5 text-center py-5">
+                
+                  
+                    followers {{ profile.followers.count }}
+                    
+                    
+                </div>
+                <div class="col col-2 px-md-0 px-5 text-center py-5">
+                  
+
+                following {{ profile.following.count }}
+              
+                {% endif %}
+          
+        </div>
     </div>
- </div>
- 
- 
+</div>
+
 {% endblock content %}

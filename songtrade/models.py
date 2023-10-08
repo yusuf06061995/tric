@@ -7,6 +7,21 @@ import datetime
 
 
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    followers = models.ManyToManyField("self", related_name='following',symmetrical=False, blank=True)
+
+    def __str__(self):
+        return self.user.username
+    
+
+
+
+
+
+
+
+
 
 
 class Songs(models.Model):

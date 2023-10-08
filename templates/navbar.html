@@ -1,39 +1,87 @@
+<div class="container-xxl d-flex justify-content-between fixed-top bg-white py-2 border-bottom border-mutted border-1">
 
-  <div class="container-xxl d-flex justify-content-between fixed-top bg-white py-2 border-bottom border-mutted border-1">
+  {% if user.is_authenticated %}
+  <div class="container-fluid d-flex  justify-content-between align-items-center  ">
+    <div class="d-flex align-items-center">
+      <a href="{% url 'home' %}" class="fw-bold fs-6  text-dark text-decoration-none"
+        style="font-family: 'Merriweather',serif;">tric</a>
+      <a href="{% url 'song-dashboard' %}"
+        class="ms-3 pe-1 text-decoration-none link-primary text-dark text-decoration-none ms-3"
+        style="font-size:12px">Discover</a>
 
-    {% if user.is_authenticated %}
-    <div class="container-fluid d-flex  justify-content-between align-items-center ">
-      <div class="d-flex align-items-center">
-        <a href="{% url 'home' %}" class="fw-bold fs-6  text-dark text-decoration-none"style="font-family: 'Merriweather', serif;">tric</a>
-        <a href="{% url 'song-dashboard' %}" class="ms-3 pe-1 text-decoration-none link-primary text-dark text-decoration-none ms-3"
-          style="font-size:12px">Discover</a>
-    
-        <a href="{% url 'song-list' %}" class="text-dark ms-3 pe-1 text-decoration-none link-primary " style="font-size:12px">Portfolio</a>
+      <a href="{% url 'song-list' %}" class="text-dark ms-3 pe-1 text-decoration-none link-primary top-md-0 top-100"
+        style="font-size:12px">Portfolio</a>
+      <a href="{% url 'user-post' request.user.userprofile.id  %}"
+        class="text-dark ms-3 pe-1 text-decoration-none link-primary" style="font-size:14px">Post</a>
+      <div class="container-fluid">
+        <a href="#" class="text-dark ms-2 pe-1 text-decoration-none " style="font-size:14px" data-bs-toggle="offcanvas"
+          data-bs-target="#search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+            viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg></a>
       </div>
-      <div class="btn-group ps-5">
-       
-        <button type="button" class="btn btn-white  border-0 dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"style="outline-none">
-          <img src="../media/song-media/blank.png" class="rounded-circle " alt=""height="30" width="30">
-        </button>
-        
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-xxl-start">
-         <a href="{% url 'profile' request.user.id  %}"class="text-decoration-none"><li><button class="dropdown-item" type="button"style="font-size:12px">{{request.user}}</button></li></a>
+      <div class="offcanvas offcanvas-bottom h-100"id="search">
+        <div class="offcanvas-header text-center">
+          <h6 class="offcanvas-title">Search</h6>
 
-          <li><button class="dropdown-item fw-bold " type="button"style="font-size:12px">{{request.user.email}}</button></li>
-           
-          <li class="nav-item "><a class="ms-3 text-decoration-none nav-link-hover link-active link-primary text-dark fw-bold"style="font-size:12px" href="{% url 'logout' %}">Sign out</a></li>
-        </ul>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="row py-5  d-flex justify-content-center">
+            <div class="col col-md-8 col-12 mb-3">
+              <div class="bg-white rounded-3">
+                <form id="searchForm" method="post" action="">
+                  {% csrf_token %}
+                  <input type="text" name="editors" id="myInput"
+                    class="form-control border-0 py-2 border-0 shadow-none  bg-light py-3 " placeholder="Search Editors"
+                    style="font-size:12px;">
+                </form>
+
+                <div class="col col-md-8 col-12 mb-3"></div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="album py-5 px-4">
+                <div class="container">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      {% else %}
-      <a href="{% url 'home' %}" class="fw-bold fs-6 py-2  text-dark text-decoration-none mx-2"style="font-family: 'Merriweather', serif;">tric</a>
-      <a class="nav-link-hover link-primary ms-auto text-hover-primary  text-dark text-decoration-none py-2" href="{% url 'login' %}" style="font-size:12px">Login</a>
-
-      
-        <div class="d-none d-md-block vr ms-4 py-2 h-50 mt-2"></div>
-      
-      <a class=" d-none d-md-block nav-link-hover py-2  link-primary mx-4 text-hover-primary text-dark text-decoration-none " href="{% url 'signup' %}" style="font-size:12px">Sign Up</a>
-    
-      {% endif %}
     </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-white  border-0 dropdown-toggle" data-bs-toggle="dropdown"
+        data-bs-display="static" aria-expanded="false" style="outline-none">
+        <img src="../media/song-media/blank.png" class="rounded-circle " alt="" height="30" width="30">
+      </button>
+
+      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-xxl-start">
+        <a href="{% url 'profile' request.user.userprofile.id  %}" class="text-decoration-none">
+          <li><button class="dropdown-item" type="button" style="font-size:12px"> Welcome - {{request.user}}</button></li>
+        </a>
+
+        <li><button class="dropdown-item fw-bold" type="button" style="font-size:12px">{{request.user.email}}</button>
+        </li>
+
+        <li class="nav-item "><a
+            class="ms-3 text-decoration-none nav-link-hover link-active link-primary text-dark fw-bold"
+            style="font-size:12px" href="{% url 'logout' %}">Sign out</a></li>
+      </ul>
+    </div>
+    {% else %}
+    <a href="{% url 'home' %}" class="fw-bold fs-6 py-2  text-dark text-decoration-none mx-2"
+      style="font-family: 'Merriweather', serif;">tric</a>
+    <a class="nav-link-hover link-primary ms-auto text-hover-primary text-dark text-decoration-none py-2"
+      href="{% url 'login' %}" style="font-size:12px">Login</a>
+    <div class="d-none d-md-block vr ms-4 py-2 h-50 mt-2"></div>
+    <a class=" d-none d-md-block nav-link-hover py-2  link-primary mx-4 text-hover-primary text-dark text-decoration-none "
+      href="{% url 'signup' %}" style="font-size:12px">Sign Up</a>
+
+    {% endif %}
   </div>
+</div>
 </div>

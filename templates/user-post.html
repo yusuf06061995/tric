@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container py-5 px-5">
+
+    <div class="row py-5 px-5"style="height:450px;">
+    
+       
+            {% for profile in profiles  %}
+            
+            {% if request.user.is_authenticated %}
+                {% csrf_token %}
+                {% if profile in user.userprofile.followers.all %}
+                <div class="col col-md-12 col-12 py-3">
+                {{ profile.user.username }}
+               
+                <button class="btn btn-dark" name="follow" type="submit" value="unfollow">Unfollow</button>
+                </div> 
+                {% else %}
+                <div class="col col-md-12 col-12 py-3">
+                {{ profile.user.username }}
+               
+                 <button class="btn btn-dark"name="follow" type="submit" value="follow">Follow</button> 
+                 </div>
+                 {% endif %}
+               
+            {% endif %}
+            {% endfor %}
+        </div>
+        
+    </div>
+   
+</div>
+
+<!-- footer -->
+<div class="container-xxl bg-white text-light py-5 border-mutted border-top">
+    <div class="container">
+        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-5">
+            <div class="col mb-3 col-md-3">
+                <h6 class="text-dark"style="font-family: 'Merriweather', serif;">tric</h6>
+            </div>
+            <div class="col mb-3 col-md-3">
+                <ul class="nav flex-column ">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Help Center</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Support</a></li>
+                </ul>
+            </div>
+            <div class="col col-md-3 mb-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Blog</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Twitter</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Facebook</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Youtube</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Tiktok</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Instagram</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Discord</a></li>
+                </ul>
+            </div>
+            <div class="col mb-3 col-md-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Jobs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Privacy</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Terms OF Services</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link-hover link-active link-primary text-decoration-none p-0 text-dark">Associated Risk</a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+</div>  
+{% block js %}
+
+
+{% endblock js %}
+{% endblock %}

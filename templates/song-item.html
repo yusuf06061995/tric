@@ -69,16 +69,16 @@
             <div class="modal-body">
                 <div class="row">
                     <h6>ADD SONGS</h6>
-                    <form method="post" action="{%  url 'add-songs' %}" enctype="multipart/form-data">
+                    <form method="post"action="{%  url 'add-songs' %}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="col col-12">
                             <label for="text" class="mb-2">Song Name : </label>
-                            <input type="text" name="song_name" class="form-control mb-2">
-                            <label for="text" class="mb-2">Song Price : </label>
-                            <input type="text" name="song_price" class="form-control mb-2">
-                            <label for="file" class="mb-2">Song Image : </label>
-                            <input type="file" name="song_image" class="form-control mb-3">
-                            <input type="submit" class="btn btn-dark w-100" value="Add New">
+                            <input type="text"name="song_name" class="form-control mb-2">
+                            <label for="text"class="mb-2">Song Price : </label>
+                            <input type="text"name="song_price"class="form-control mb-2">
+                            <label for="file"class="mb-2">Song Image : </label>
+                            <input type="file"name="song_image"class="form-control mb-3">
+                            <input type="submit"class="btn btn-dark w-100" value="Add New">
                         </div>
                     </form>
                 </div>
@@ -169,6 +169,33 @@
     });
 
   
+
+  </script>
+  <script>
+    
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+  $(document).ready(function () {
+    $(".fade").fadeOut(4000)
+  });
 
   </script>
   

@@ -17,10 +17,10 @@
             <div class="container">
               <div class="carousel-caption text-center py-5">
                 {% if recent_release.0.slug %} 
-                <p class="fs-2"> {{  recent_release.0.song_name }}</p>
-                <p class="fs-2 pb-5"style="line-height:1"> {{ recent_release.0.artist_name }}</p>
-                <i class="px-3"style="font-style:normal">TRADING NOW</i>
-                <a href="{% url 'editions' recent_release.0.slug  %}" class="btn btn-dark opacity-75 border-1 border-white">buy now</a>
+                <p class="fs-2 fw-bold"> {{  recent_release.0.song_name }}</p>
+                <p class="fs-2 pb-5 fw-bold"style="line-height:1"> {{ recent_release.0.artist_name }}</p>
+                <i class="px-3 fw-bold"style="font-style:normal">TRADING NOW</i>
+                <a href="{% url 'editions' recent_release.0.slug  %}" class="btn  btn-outline-light border-1">buy now</a>
                 {% else %}
                 Coming soon ..
               {% endif %}
@@ -32,10 +32,10 @@
             <div class="container">
               <div class="carousel-caption text-center py-5">
                 {% if recent_release.1.slug %} 
-                <p class="fs-2"> {{  recent_release.1.song_name }}</p>
-                <p class="fs-2 pb-5"> {{  recent_release.1.artist_name }}</p>
-                <i class="px-3"style="font-style:normal">TRADING NOW</i>
-                <a href="{% url 'editions' recent_release.1.slug  %}" class="btn btn-dark opacity-75 border-1 border-white">buy now</a>
+                <p class="fs-1 fw-bold"> {{  recent_release.1.song_name }}</p>
+                <p class="fs-2 pb-5 fw-bold"> {{  recent_release.1.artist_name }}</p>
+                <i class="px-3 fw-bold"style="font-style:normal">TRADING NOW</i>
+                <a href="{% url 'editions' recent_release.1.slug  %}" class="btn btn-outline-light border-1">buy now</a>
                 {% else %}
                 Coming soon ..
                 {% endif %}
@@ -47,11 +47,11 @@
              <div class="container">
               <div class="carousel-caption text-center py-5">
                 {% if recent_release.2.slug %} 
-                <p class="fs-2"> {{  recent_release.2.song_name }}</p>
-                <p class="fs-2 pb-5">  {{ recent_release.1.artist_name }}</p>
-                <i class="px-3"style="font-style:normal">TRADING NOW</i>
+                <p class="fs-1 fw-bold"> {{  recent_release.2.song_name }}</p>
+                <p class="fs-2 pb-5 fw-bold">  {{ recent_release.1.artist_name }}</p>
+                <i class="px-3 fw-bold"style="font-style:normal">TRADING NOW</i>
                
-                <a href="{% url 'editions' recent_release.2.slug  %}" class="btn btn-dark opacity-75 border-1 border-white">buy now</a>
+                <a href="{% url 'editions' recent_release.2.slug  %}" class="btn btn-outline-light">buy now</a>
                 {% else %}
                   Coming soon ..
                 {% endif %}
@@ -64,7 +64,7 @@
             <img src="" class="bd-placeholder-img" width="100%" height="350px">
              <div class="container">
               <div class="carousel-caption text-center py-5"> 
-                <p class="fs-2"> {{  recent_release.2.song_name }}</p>
+                <p class="fs-1"> {{  recent_release.2.song_name }}</p>
                 <p class="fs-2 pb-5"> {{ request.user }}</p>
                 <i class="px-3"style="font-style:normal">TRADING NOW</i>
                 <a href="" class="btn btn-dark opacity-75 border-1 border-white">buy now</a>
@@ -114,8 +114,8 @@
                                 <p class="text-start text-start"style="font-size:14px">Avg Sale
                                     <h6 class="me-auto px-2"><i class="bi bi-currency-rupee"></i>{{ release.song_price }}</h6>
                                 </p>
-                                <a href="{% url 'editions' release.slug %}" class="btn btn-bg-dark text-muted border-secondary border-opacity-10 px-4"
-                                    style="font-size: 14px;">BUY </button>
+                                <a href="{% url 'editions' release.slug %}" class="btn btn-outline-light  px-4"
+                                    style="font-size: 14px; border:1px solid rgb(228, 212, 212); color:rgb(226, 208, 208);">BUY </button>
                                 </a>
                             </div>
                         </div>
@@ -136,7 +136,7 @@
                 <div class="col px-md-4 col-md-6">
                     <div class="card border-0 w-100">
                         <div class="card-body text-start d-flex justify-content-between">
-                            <img src="../media/song-media/istockphoto-1133804554-1024x1024.jpg"
+                            <img src="../media/song-media/istockphoto-1412950304-1024x1024.jpg"
                                 class="bd-placeholder-img shadow-sm border-mutted border-2 rounded-2"
                                 style="height:80px; min-width: 100px;">
                             <p class="ms-3"> hen you invest in music through tric, you own a piec e of a song or
@@ -147,7 +147,7 @@
                 <div class="col px-md-4 col-md-6">
                     <div class="card border-0 w-100">
                         <div class="card-body text-start d-flex justify-content-between">
-                            <img src="../media/song-media/istockphoto-622426674-1024x1024.jpg"
+                            <img src="../media/song-media/Untitled.jpeg"
                                 class="bd-placeholder-img shadow-sm border-mutted border-2 rounded "
                                 style="min-width:100px;height:80px;">
                             <p class="ms-3"> hen you invest in music through tric, you own a piec e of a song or
@@ -158,7 +158,7 @@
                 <div class="col px-md-4 col-md-6">
                     <div class="card  mb-5  border-0 w-100">
                         <div class="card-body text-start d-flex justify-content-between">
-                            <img src="../media/song-media/music.jpeg"
+                            <img src="../media/song-media/istockphoto-622426674-1024x1024.jpg"
                                 class="bd-placeholder-img shadow-sm border-mutted border-2 rounded "
                                 style="min-width:100px;height:80px;">
                                 <p class="ms-3"> hen you invest in music through tric, you own a piec e of a song or
@@ -169,7 +169,7 @@
                 <div class="col px-md-4  col-md-6">
                     <div class="card  mb-5  border-0 w-100">
                         <div class="card-body text-start d-flex justify-content-between">
-                            <img src="../media/song-media/music_LQQOeKz.jpeg"
+                            <img src="../media/song-media/music2.jpg"
                                 class="bd-placeholder-img shadow-sm border-mutted border-2 rounded "
                                 style="min-width:100px;height:80px;">
                             <p class="ms-3"> hen you invest in music through tric, you own a piec e of a song or
@@ -231,17 +231,17 @@
              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-xl-4 mb-5">
               <div class="col gx-md-5 col-lg-4 col-12 gx-4 mb-5">
                 <div class="card shadow-sm border-0 rounded-3">
-                  <img src="../media/song-media/istockphoto-1133804554-1024x1024.jpg" class="bd-placeholder-img card-img-top rounded-4" width="100%" height="300">    
+                  <img src="../media/song-media/istockphoto-1412950304-1024x1024.jpg" class="bd-placeholder-img card-img-top rounded-4" width="100%" height="300">    
                 </div>
               </div>
               <div class="col px-md-4 col-lg-4 col-12  mb-5">
                 <div class="card shadow-sm border-0">
-                  <img src="../media/song-media/images.jpeg" class="bd-placeholder-img card-img-top rounded-4 " width="100%" height="300">    
+                  <img src="../media/song-media/music2.jpg" class="bd-placeholder-img card-img-top rounded-4 " width="100%" height="300">    
                 </div>
               </div>
               <div class="col gx-md-5 col-lg-4 col-12 gx-4 mb-5">
                 <div class="card shadow-sm border-0">
-                  <img src="../media/song-media/istockphoto-1133804554-1024x1024.jpg" class="bd-placeholder-img card-img-top rounded-4 " width="100%" height="300">    
+                  <img src="../media/song-media/istockphoto-1455516783-1024x1024.jpg" class="bd-placeholder-img card-img-top rounded-4 " width="100%" height="300">    
                 </div>
               </div>
             </div>
@@ -287,118 +287,7 @@
         </div> 
        {% block js %}  
 
-       <script>
-    // Get the canvas element
-    const canvas = document.getElementById('portfolioChart');
-
-    // Chart data
-    const chartData = {
-        labels: [{% for release in recent_release  %} '{{release.song_packages }}' , {% endfor %}], // Replace with your actual labels
-        datasets: [
-            {
-                label: 'Portfolio Value',
-                data: [{% for release in recent_release  %} '{{release.song_price }}' , {% endfor %}], // Replace with your actual data
-               
-                borderColor: '#ccc',
-                backgroundColor: 'rgb(75, 192, 192)',
-                
-
-
-                
-            
-            }
-        ]
-    };
-
   
-    const chartOptions = {
-        responsive: true,
-      
-        scales: {
-            x: {
-                grid: {
-                    display: false,
-                },
-            title: {
-                        display: true,
-                        text: 'Song Packages'
-                    }
-            },
-            y: {
-                grid: {
-                    display: false
-                },
-                title: {
-                        display: true,
-                        text: 'Song Price'
-                    }
-               
-            }
-        }
-    };
 
-    new Chart(canvas, {
-        type: 'bar',
-        data: chartData,
-        options: chartOptions,
-    });
-</script>
-    
-<script>
-    // Get the canvas element
-    const canvas1 = document.getElementById('portfolioChart1');
-
-    // Chart data
-    const chartData1 = {
-        labels: [{% for release in recent_release  %} '{{release.song_name }}' , {% endfor %}], // Replace with your actual labels
-        datasets: [
-            {
-                label: 'Portfolio Value',
-                data: [{% for release in recent_release  %} '{{release.song_price }}' , {% endfor %}], // Replace with your actual data
-               
-                borderColor: '#ccc',
-                backgroundColor: 'rgb(75, 192, 192)',
-                
-
-
-                
-            
-            }
-        ]
-    };
-
-  
-    const chartOptions1 = {
-        responsive: true,
-      
-        scales: {
-            x: {
-                grid: {
-                    display: false,
-                },
-            title: {
-                        display: true,
-                        text: 'Song Name'
-                    }
-            },
-            y: {
-                grid: {
-                    display: false
-                },
-                title: {
-                        display: true,
-                        text: 'Song Price'
-                    }
-               
-            }
-        }
-    };
-
-    new Chart(canvas1, {
-        type: 'line',
-        data: chartData1,
-        options: chartOptions1,
-    });
-</script>
 {% endblock js %}
  {% endblock content %}

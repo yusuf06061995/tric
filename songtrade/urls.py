@@ -18,7 +18,11 @@ urlpatterns = [
     path('add-songs',add_songs,name='add-songs'),
     path('delete-song/<slug:slug>',delete_song,name='delete-song'),
     path('song-list/',song_list,name='song-list'),
-    path('profile/<int:slug>',user_profile,name='profile'),
+    path('profile/<int:pk>',user_profile,name='profile'),
+    path('user-post/<int:pk>',user_post,name='user-post'),
+    path('search',search,name='search'),
+    
+    
 
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

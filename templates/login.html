@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid justify-content-center d-flex">
-  <div class="row row-cols-12 ">
-    <div class="card border-0 py-5"style="width:22rem;">
+  <div class="row row-cols-12">
+    <div class="card border-0 py-5"style="width:25rem;">
 
       {% if messages %}
       {% for message in messages %}
@@ -32,6 +32,7 @@
                 <div class="invalid-feedback" data-for="validationCustom04">
                   Please  Enter the Password
                 </div>
+              
             </div>
             <div class="col-md-12">
                 <button type="submit" class="btn btn-dark btn-lg  mt-4 fs-6 w-100">Submit</button>
