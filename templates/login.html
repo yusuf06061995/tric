@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container-fluid justify-content-center d-flex">
-  <div class="row row-cols-12">
-    <div class="card border-0 py-5"style="width:25rem;">
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/boostrap.min.css' %}">
+<div class="container-fluid">
+  <div class="row  justify-content-center d-flex px-3 px-md-0">
+    <div class="card border-0 py-5"style="max-width:450px;">
 
       {% if messages %}
       {% for message in messages %}
@@ -13,6 +16,9 @@
       {% endif %}
       {% endfor %}
       {% endif %}
+      <div id="loadingSpinner" class="spinner-border visually-hidden" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     <form method="post" action="{% url 'login' %}" class="needs-validation my-5" novalidate>
         {% csrf_token %}
             <div class="col-md-12 text-center my-4">
@@ -30,17 +36,19 @@
                     placeholder="Password" id="validationCustom04" required
                     >
                 <div class="invalid-feedback" data-for="validationCustom04">
-                  Please  Enter the Password
+                  Please  Enter The Password
                 </div>
               
             </div>
             <div class="col-md-12">
+             
                 <button type="submit" class="btn btn-dark btn-lg  mt-4 fs-6 w-100">Submit</button>
             </div>
             <h6 class="text-center mt-3 text-muted fw-thin">Dont have Account? <a href="{% url 'signup' %}"
                 class="text-dark link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Signup</a>
             </h6>
             <h6 class="text-center">
+
              <a href="{% url 'forgot-password' %}"
                     class="text-dark link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
                     href="#">
@@ -78,5 +86,34 @@
     $(".fade").fadeOut(4000)
   });
 </script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  function submitForm() {
+    // Show the spinner when the form is submitted
+    $('#loadingSpinner').removeClass('visually-hidden');
+
+    // Submit the form using AJAX or perform other actions
+    $.ajax({
+      type: 'POST',  // Change this to your form method
+      url: '/your-form-endpoint',  // Change this to your form endpoint
+      data: $('#myForm').serialize(),
+      success: function (response) {
+        // Handle the success response
+        console.log(response);
+        // Hide the spinner after the form is submitted successfully
+        $('#loadingSpinner').addClass('visually-hidden');
+      },
+      error: function (error) {
+        // Handle the error response
+        console.error(error);
+        // Hide the spinner after an error occurs
+        $('#loadingSpinner').addClass('visually-hidden');
+      }
+    });
+  }
+</script>
+
 {% endblock js %}
 {% endblock %}

@@ -2,10 +2,15 @@
 {% block content %}
 {% load static %}
 {% include "navbar.html" %}
+<style>
+    th,td{
+        min-width: 250px;
+    }
+</style>
 
-<div class="container-xxl py-5">
-    <div class="container">
-        <div class="album py-5 px-4">
+<div class="container-fluid py-5">
+    <div class="container-fluid">
+        
             <div class="container py-5">
                 <div class="col-12">
 
@@ -14,46 +19,58 @@
                 </div>
 
                </div>
-                <div class="row bg-light py-5 px-5 d-flex justify-content-between">
-                    <div class="col col-md-3 col-12 mb-3">
-                       <div class="bg-white rounded-3">
-                        <input type="text" id="myInput" class="form-control border-0 py-2 outline-0 fs-6" placeholder="Search Songs">
-        
-                      </div>
-                    </div>
-                    <div class="col col-md-3 col-12">
+               <div class="container">
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <div class="d-flex  align-items-center">
+            
+                            <div class="input-group "style="max-width:300px">
+                                <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                                  </svg></span>
+                                <input type="search" id="myInput" class="form-control" placeholder="Songs" aria-label="Username" aria-describedby="basic-addon1">
+                              </div>
+                                                          
+                  
                      {% if perms.songtrade.delete_songs %}   
-                    <button class="btn btn-dark" data-bs-toggle="modal"
+                     <div class="ms-auto">
+                    <button class="btn btn-dark mw-100" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">Add Songs</button>
                         {% endif %}
-                    </div>
+                     </div>   
+                     </div></div>
+                    <div class="card-body overflow-scroll px-3 py-2 ">
 
-                    <table>
+                    <table id="example" class="table table-borderd table-lg table-hover">
                         <thead>
-                            <tr><th class="py-3  col-md-2  col-2">Sr No</th>
-                                <th class="py-3  col-md-2 col-2">Song Name</th>
-                                <th class="py-3  col-md-2 col-2">Song Price</th>
-                                <th class="py-3  col-md-2 col-2">Song Discription</th>
-                                <th class="py-3  col-md-2 col-2">Action</th>
+                            <tr><th class=""style="min-width: 125px;">Sr No</th>
+                                <th class="min-w-125px">Song Name</th>
+                                <th class="min-w-125px">Song Price</th>
+                                <th class="min-w-125px">Song Discription</th>
+                                <th class="min-w-125px">Action</th>
                             </tr>
                         </thead>
                         <tbody id="myTable">
                             {% for fetch_song in fetch_songs %}
                             <tr data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
-                                class="scrollspy-example-2" tabindex="0">
-                                <td class="col-md-2 px-3 col-2 py-3">{{ forloop.counter }} .</td>
-                                <td class="col-md-2 col-3 py-3">{{ fetch_song }}</td>
-                                <td class="col-md-2 col-2 py-3 ">{{ fetch_song.song_price }}</td>
-                                <td class="col-md-2 col-2 py-3"><img src="/media/{{fetch_song.song_image}}"
+                                class="scrollspy-example" tabindex="0">
+                                <td class="min-w-125px">{{ forloop.counter }} .</td>
+                                <td class="min-w-125px">{{ fetch_song }}</td>
+                                <td class="min-w-125px">{{ fetch_song.song_price }}</td>
+                                <td class="min-w-125px"><img src="/media/{{fetch_song.song_image}}"
                                         class="bd-placeholder-img rounded-circle" width="50" height="50"></td>
-                                <td class="col-md-2   col-2  py-3">
+                                <td class="">
                                    
-                                        <a href="{% url 'delete-song' fetch_song.slug %}" class="btn btn-danger btn-lg ms-2 btn-delete-song" style="font-size:13px;"><i class="bi bi-trash3-fill"></i></a>
+                                        <a href="{% url 'delete-song' fetch_song.slug %}" class="btn-lg ms-2 btn-delete-song" style="text-muted"><i class="bi bi-trash3-fill"></i></a>
 
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
+                </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -123,7 +140,8 @@
             </div>
         </footer>
     </div>
-</div> 
+</div>
+
 
 <script>
     $(document).ready(function () {

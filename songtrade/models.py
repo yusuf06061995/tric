@@ -15,15 +15,6 @@ class UserProfile(models.Model):
         return self.user.username
     
 
-
-
-
-
-
-
-
-
-
 class Songs(models.Model):
 
     song_choice = [
@@ -45,10 +36,7 @@ class Songs(models.Model):
         self.slug = slugify(self.song_name)
         super(Songs, self).save(*args, **kwargs)
 
-    # def create(self, *args, **kwargs):
-    #     self.slug = slugify(self.songs_description)
-    #     super(Songs, self).create(*args, **kwargs)
-
+   
 
     class Meta:
         db_table = ''

@@ -43,7 +43,13 @@
             </div>
           </div>
           <div class="carousel-item">
+            {% if song_image  %}
             <img src="{{ recent_release.2.song_image.url }}" class="bd-placeholder-img" width="100%" height="350px">
+            {% else %}
+            <img src="{{ recent_release.0.song_image.url }}" class="bd-placeholder-img" width="100%" height="350px;">
+
+
+            {% endif %}
              <div class="container">
               <div class="carousel-caption text-center py-5">
                 {% if recent_release.2.slug %} 
